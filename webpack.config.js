@@ -3,7 +3,7 @@ const
   webpack = require('webpack');
 
 module.exports = {
-  entry: './src/client/app.js',
+  entry: './src/client/index.js',
   devtool: 'inline-source-map',
   watch: true,
   output: {
