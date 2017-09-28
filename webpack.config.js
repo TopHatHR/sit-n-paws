@@ -3,12 +3,12 @@ const
   webpack = require('webpack');
 
 module.exports = {
-  entry: './src/app.js',
+  entry: './src/client/app.js',
   devtool: 'inline-source-map',
   watch: true,
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public/dist')
+    path: path.resolve(__dirname, 'src/public/dist')
   },
   module: {
     rules: [
