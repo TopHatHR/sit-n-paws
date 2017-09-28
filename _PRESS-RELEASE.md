@@ -21,7 +21,7 @@ Once the project moves into development, the press release can be used as a touc
  -->
 
 ## Heading ##
-  > sit-n-paws
+  > sit-n-paws..
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
