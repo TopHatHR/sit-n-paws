@@ -1,7 +1,11 @@
-# Sit N Paws #
-
-
+<<<<<<< HEAD
+# Project Name #
+Sit-n-paws
 =======
+# Sit N Paws #
+>>>>>>> f71e08054ec6ed8d1a430758bb07d5d83c390e4d
+
+
 <!--
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
@@ -24,7 +28,11 @@ Once the project moves into development, the press release can be used as a touc
   Sit N Paws: Putting a woof over your head.
 
 ## Sub-Heading ##
+<<<<<<< HEAD
+  The target market is dogs.
+=======
   This application is for pet owners who want to leave their pets to be safely cared for by other pet lovers.
+>>>>>>> f71e08054ec6ed8d1a430758bb07d5d83c390e4d
 
 ## Summary ##
   This application is for pet owners who want to leave their pets to be safely cared for by other pet lovers. Pet owners can connect with other pet lovers that will watch your pet for a reasonable fee.
