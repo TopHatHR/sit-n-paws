@@ -22,6 +22,7 @@
   "homepage": "https://github.com/MachDomo/sit-n-paws#readme",
   "dependencies": {
     "express": "^4.15.5",
+    "material-ui": "^0.19.2",
     "require": "^2.4.20"
   },
   "devDependencies": {
