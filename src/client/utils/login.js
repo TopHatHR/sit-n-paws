@@ -1,4 +1,4 @@
-export default function LoginSubmit(credentials, callback) {
+export default function LoginSubmit(url, credentials, callback) {
 
   // post request for user login with user credentials object
   var options = {
@@ -10,9 +10,9 @@ export default function LoginSubmit(credentials, callback) {
   };
 
   console.log('POST SUBMITTED', credentials);
-  fetch('url', options)
+  fetch(url, options)
     .then((res) => {
-      callback(res);
+      callback(JSON.parse(res));
     })
     .catch((errors) => {
       console.log('Login Error: ', errors);
