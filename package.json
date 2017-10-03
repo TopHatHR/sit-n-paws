@@ -23,9 +23,10 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.15.5",
+    "material-ui": "^0.19.2",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.13",
-    "material-ui": "^0.19.2",
+    "prop-types": "^15.6.0",
     "require": "^2.4.20"
   },
   "devDependencies": {

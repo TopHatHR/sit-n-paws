@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -143,6 +144,5 @@ export default class Login extends React.Component {
     );
   }
 }
-
 
 Login.propTypes = {handleLogin: React.PropTypes.func.isRequired};
