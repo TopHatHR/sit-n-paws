@@ -10,7 +10,12 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: false,
+      loggedInAs: ''
+    }
+
+    this.handleLogin = (username) => {
+      this.setState({isLoggedIn: true, loggedInAs: username});
     }
   }
 
@@ -31,7 +36,9 @@ export default class App extends React.Component {
         <div>
           <h1>Hello from LOGGED OUT React</h1>
           <MuiThemeProvider>
-            <Login />
+            <Login
+              handleLogin={this.handleLogin}
+            />
           </MuiThemeProvider>
         </div>
       );

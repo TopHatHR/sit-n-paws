@@ -11,6 +11,14 @@ export default class Main extends React.Component {
   render() {
     return (
       <div>
+
+      // drawer
+
+      // partial profile
+
+      // listings
+        // cards
+
         <h1>MAIN COMPONENT</h1>
 
       </div>
