@@ -15,6 +15,7 @@ seedListingDB();
 
 
 
+//post for login information
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
@@ -157,6 +158,7 @@ app.post('/listings', (req, res) => {
 
 });
 
+<<<<<<< HEAD
 //get for listings (all)
 app.get('/listings', (req, res) => {
   Listing.find({})
@@ -187,6 +189,26 @@ app.get('/listings', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
 })
+=======
+//post for owner profile
+app.post('/ownerprofile', (req, res) => {
+
+})
+
+//post for host profile
+app.post('/hostprofile', (req, res) => {
+
+})
+
+//post for listings
+app.post('/listings', (req, res) => {
+
+})
+
+//get for listings
+
+
+>>>>>>> added schemas
 
 app.listen(3000, () => {
   console.log('Listening on localhost:3000');
