@@ -2,6 +2,7 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import LoginSubmit from '../utils/login';
 
 // login form that takes username and password
 
@@ -24,8 +25,21 @@ export default class Login extends React.Component {
     }
 
     this.handleSubmit = () => {
-      console.log('SUBMITTED');
+      var credentials = {
+        username: this.state.username,
+        password: this.state.password
+      };
+      console.log(credentials);
+      // LoginSubmit()
       // this.setState({open: false});
+    }
+
+    this.handleUsernameChange = (e) => {
+      this.setState({username: e.target.value});
+    }
+
+    this.handlePasswordChange = (e) => {
+      this.setState({password: e.target.value});
     }
 
   }
@@ -62,9 +76,9 @@ export default class Login extends React.Component {
             <h1>LOGIN</h1>
             <form>
               <label>username</label>
-              <input type="text" />
+              <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
               <label>password</label>
-              <input type="password" />
+              <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
               <input type="submit" value="login" />
             </form>
           </div>
