@@ -11,5 +11,4 @@ usersSchema = new mongoose.Schema(
 
 var User = mongoose.model('User', usersSchema)
 
-// export default User;
 module.exports = User;
