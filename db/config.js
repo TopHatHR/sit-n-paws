@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var url = 'mongodb://localhost:3000/'; //UPDATE LINK
+var url = 'mongodb://127.0.0.1/db'; 
 mongoose.connect(url);
 
 var db = mongoose.connection;

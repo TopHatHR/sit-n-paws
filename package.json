@@ -25,6 +25,7 @@
     "express": "^4.15.5",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.13",
+    "material-ui": "^0.19.2",
     "require": "^2.4.20"
   },
   "devDependencies": {
