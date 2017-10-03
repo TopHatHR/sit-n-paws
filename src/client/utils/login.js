@@ -9,7 +9,7 @@ export default function LoginSubmit(credentials, callback) {
     })
   };
 
-  console.log('POST SUBMITTED');
+  console.log('POST SUBMITTED', credentials);
   fetch('url', options)
     .then((res) => {
       callback(res);
