@@ -122,8 +122,21 @@ app.post('/profile', (req, res) => {
 
 //post for listings
 app.post('/listings', (req, res) => {
+<<<<<<< HEAD
   Listing.find({name: req.body.name})
   .then((err, found) => {
+=======
+  var newListing = new Listing {
+    name: req.body.name,
+    zipcode: req.body.zipcode,
+    dogPreferences: req.body.dogPreferences,
+    homeAttributes: req.body.homeAttributes,
+    hostPictures: req.body.hostPictures,
+    homePictures: req.body.homePictures,
+    cost: req.body.cost
+  };
+  newListing.save(function(err, host) {
+>>>>>>> front end and backend almost set up
     if (err) {
       res.json({success: false, message: err});
     }
@@ -185,6 +198,7 @@ app.get('/listings', (req, res) => {
       }
     })
 })
+<<<<<<< HEAD
 
 app.get('*', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
@@ -209,6 +223,8 @@ app.post('/listings', (req, res) => {
 
 
 >>>>>>> added schemas
+=======
+>>>>>>> front end and backend almost set up
 
 app.listen(3000, () => {
   console.log('Listening on localhost:3000');
