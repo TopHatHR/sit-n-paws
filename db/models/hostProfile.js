@@ -14,5 +14,4 @@ hostSchema = new mongoose.Schema(
 
 var Host = mongoose.model('Host', hostSchema)
 
-// export default User;
 module.exports = Host;

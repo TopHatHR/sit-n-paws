@@ -18,5 +18,4 @@ ownersSchema = new mongoose.Schema(
 
 var Owner = mongoose.model('Owner', ownersSchema)
 
-// export default User;
 module.exports = Owner;
