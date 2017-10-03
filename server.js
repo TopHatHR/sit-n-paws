@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
 })
 
+//post for login information
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
@@ -30,6 +31,24 @@ app.post('/login', (req, res) => {
       }
     })
 });
+
+//post for owner profile
+app.post('/ownerprofile', (req, res) => {
+
+})
+
+//post for host profile
+app.post('/hostprofile', (req, res) => {
+
+})
+
+//post for listings
+app.post('/listings', (req, res) => {
+
+})
+
+//get for listings
+
 
 
 app.listen(3000, () => {
