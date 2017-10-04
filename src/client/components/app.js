@@ -10,7 +10,7 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: true,
       loggedInAs: ''
     }
 
@@ -24,8 +24,9 @@ export default class App extends React.Component {
     if(this.state.isLoggedIn === true) {
       return (
         <div>
-          <h1>Hello from LOGGED IN React</h1>
-          <Main />
+          <MuiThemeProvider>
+            <Main />
+          </MuiThemeProvider>
 
         </div>
       );
