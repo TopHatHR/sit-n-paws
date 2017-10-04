@@ -1,7 +1,16 @@
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(2, minmax(200px, 360px));
   grid-gap: 10px;
+  justify-content: center;
+  grid-auto-flow: row;
+
+}
+
+@media only screen and (max-width: 360px) {
+.wrapper {
+    grid-template-columns: 1fr;
+   }
 }
 
 .wrapper div {
