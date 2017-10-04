@@ -9,7 +9,7 @@ export default class ListingsContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <ListingView />
         <ListingView />
       </div>
