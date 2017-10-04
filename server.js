@@ -75,7 +75,7 @@ app.post('/profile', (req, res) => {
 
 //post for listings
 app.post('/listings', (req, res) => {
-  var newListing = new Listing {
+  var newListing = new Listing ({
     name: req.body.name,
     zipcode: req.body.zipcode,
     dogPreferences: req.body.dogPreferences,
@@ -83,7 +83,7 @@ app.post('/listings', (req, res) => {
     hostPictures: req.body.hostPictures,
     homePictures: req.body.homePictures,
     cost: req.body.cost
-  };
+  });
   newListing.save(function(err, host) {
     if (err) {
       throw err;
