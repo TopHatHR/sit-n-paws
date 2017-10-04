@@ -85,7 +85,6 @@ export default class Login extends React.Component {
       <div>
         <RaisedButton label="Dialog" onClick={this.handleOpen} />
         <Dialog
-          title="Dialog With Actions"
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
@@ -106,7 +105,6 @@ export default class Login extends React.Component {
                 <FlatButton
                   label="Submit"
                   primary={true}
-                  keyboardFocused={true}
                   onClick={() => {
                     this.handleSubmit();
                     this.handleClose();
