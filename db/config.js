@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 
-var url = 'mongodb://127.0.0.1/db'; 
+var url = 'mongodb://127.0.0.1/sitnpaws';
 mongoose.connect(url);
 
-var db = mongoose.connection;
+var sitnpaws = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
+sitnpaws.on('error', console.error.bind(console, 'connection error:'));
+sitnpaws.once('open', function () {
   console.log('connected to MongoDB');
 });
 
-module.exports = db;
+module.exports = sitnpaws;

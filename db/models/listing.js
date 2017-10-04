@@ -1,7 +1,7 @@
 //host listings
 
 var mongoose = require('mongoose');
-var db = require('../config')
+var sitnpaws = require('../config')
 
 listingSchema = new mongoose.Schema(
   {

@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/MachDomo/sit-n-paws#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "crypto": "^1.0.1",
     "express": "^4.15.5",
     "material-ui": "^0.19.2",
     "mongodb": "^2.2.31",
