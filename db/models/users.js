@@ -25,31 +25,12 @@ usersSchema.pre('save', function(next) {
     this.password = hash;
     next();
   });
-  // var user = this;
-  // bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-  //   if (err) {
-  //     return err;
-  //   }
-  //   bcrypt.hash(user.password, salt, function(err, hash) {
-  //     if (err) {
-  //       return err;
-  //     }
-  //     user.password = hash;
-  //     next();
-  //   })
-  // })
 });
 
-usersSchema.methods.comparePassword = function(enteredpwd, cb) {
+usersSchema.methods.comparePassword = function(pwd) {
   var comp = Promise.promisify(bcrypt.compare);
   return comp(pwd, this.password).bind(this)
   .then((match) => match);
-  // bcrypt.compare(enteredpwd, this.password, function(err, isMatch) {
-  //   if (err) {
-  //     return cb(err);
-  //   }
-  //   cb(null, isMatch);
-  // })
 };
 
 var User = mongoose.model('User', usersSchema);
