@@ -1,9 +1,21 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 10px;
+}
+
+.wrapper div {
+  text-align: center;
+}
+
+.wrapper form {
+  min-height: 125px;
+  width: 180px;
+  margin: 0 auto;
 }
 
 .dialogButton {
   text-align: right;
+  position: relative;
+  bottom: 0;
 }
