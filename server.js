@@ -123,10 +123,14 @@ app.post('/profile', (req, res) => {
 //post for listings
 app.post('/listings', (req, res) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
   Listing.find({name: req.body.name})
   .then((err, found) => {
 =======
   var newListing = new Listing {
+=======
+  var newListing = new Listing ({
+>>>>>>> front end and backend almost set up
     name: req.body.name,
     zipcode: req.body.zipcode,
     dogPreferences: req.body.dogPreferences,
@@ -134,7 +138,7 @@ app.post('/listings', (req, res) => {
     hostPictures: req.body.hostPictures,
     homePictures: req.body.homePictures,
     cost: req.body.cost
-  };
+  });
   newListing.save(function(err, host) {
 >>>>>>> front end and backend almost set up
     if (err) {
