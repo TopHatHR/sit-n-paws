@@ -4,18 +4,20 @@ import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import exampleListingData from '../../public/MOCK_DATA.js';
 
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      listings: [],
+      listings: exampleListingData,
       openDrawer: false,
     }
 
     this.touchTap = () => {
       this.setState({openDrawer: !this.state.openDrawer});
+      console.log(this.state.listings);
     }
 
   }
