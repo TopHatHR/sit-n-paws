@@ -2,13 +2,14 @@ const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const models = require('./db/models/users');
-var User = models.User;
-var Listing = models.Listing;
+const User = require('./db/models/users');
+
+const Listing = require('./db/models/listing');
 
 const app = express();
 
 app.use(express.static((__dirname + '/src/public')));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
@@ -18,17 +19,23 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
-  var email = req.body.email;
-  User.findOne({ username: username, password: password, email: email })
+
+  User.findOne({ username: username, password: password})
     .exec((err, found) => {
       if (err) {
         throw err;
         console.log('error');
       }
       if (found) {
-        res.redirect('/');
+        res.send(JSON.stringify({
+          success: true,
+          username: found.username,
+        }));
       } else {
-        res.redirect('/signup');
+        res.send(JSON.stringify({
+          success: false,
+          error: 'Invalid Username/Password'
+        }));
       }
     })
 });
@@ -45,13 +52,25 @@ app.post('/signup', (req, res) => {
         console.log('error');
       }
       if (found) {
-        res.redirect('/login');
+        res.send(JSON.stringify({
+          success: false,
+          error: 'User already exists!',
+        }));
       } else {
-        User.Create({
+        User.create({
           username: username,
           password: password,
           email: email
-        }).save();
+        })
+        .then((user) => {
+          res.send(JSON.stringify({
+            success: true,
+            username: user.username
+          }));
+        })
+        .catch((err) => {
+          console.log(err);
+        })
       }
     })
 })
@@ -75,7 +94,7 @@ app.post('/profile', (req, res) => {
 
 //post for listings
 app.post('/listings', (req, res) => {
-  var newListing = new Listing {
+  var newListing = new Listing({
     name: req.body.name,
     zipcode: req.body.zipcode,
     dogPreferences: req.body.dogPreferences,
@@ -83,13 +102,13 @@ app.post('/listings', (req, res) => {
     hostPictures: req.body.hostPictures,
     homePictures: req.body.homePictures,
     cost: req.body.cost
-  };
+  });
   newListing.save(function(err, host) {
     if (err) {
       throw err;
     }
-  })
-})
+  });
+});
 
 //get for listings (all)
 app.get('/listings', (req, res) => {

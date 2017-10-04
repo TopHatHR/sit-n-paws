@@ -11,8 +11,10 @@ export default function LoginSubmit(url, credentials, callback) {
 
   console.log('POST SUBMITTED', credentials);
   fetch(url, options)
-    .then((res) => {
-      callback(JSON.parse(res));
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('DATA: ', data);
+      callback(data);
     })
     .catch((errors) => {
       console.log('Login Error: ', errors);
