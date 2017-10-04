@@ -3,7 +3,6 @@ const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./db/models/users');
-
 const Listing = require('./db/models/listing');
 
 const app = express();
@@ -15,27 +14,56 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
 })
 
-//post for login information
+// post for login information
+// app.post('/login', (req, res) => {
+//   var username = req.body.username;
+//   var password = req.body.password;
+//
+//   User.findOne({ username: username})
+//     .exec((err, found) => {
+//       if (err) {
+//         throw err;
+//         console.log('error');
+//       }
+//       if (found) {
+//         res.send(JSON.stringify({
+//           success: true,
+//           username: found.username,
+//         }));
+//       } else {
+//         res.send(JSON.stringify({
+//           success: false,
+//           error: 'Invalid Username/Password'
+//         }));
+//       }
+//     })
+// });
+
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
 
-  User.findOne({ username: username, password: password})
-    .exec((err, found) => {
+  User.findOne({ username: username})
+     .exec((err, found) => {
       if (err) {
         throw err;
         console.log('error');
-      }
-      if (found) {
-        res.send(JSON.stringify({
-          success: true,
-          username: found.username,
-        }));
       } else {
-        res.send(JSON.stringify({
-          success: false,
-          error: 'Invalid Username/Password'
-        }));
+        if (found) {
+          found.comparePassword(password).then(match => {
+            if (match) {
+              res.send(JSON.stringify({
+                success: true,
+                username: found.username,
+              }));
+            }
+          })
+        } else {
+          res.send(JSON.stringify({
+            success: false,
+            error: 'Invalid Username/Password'
+          }));
+        }
       }
     })
 });
@@ -45,6 +73,7 @@ app.post('/signup', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
   var email = req.body.email;
+
   User.findOne({ email: email })
     .exec((err, found) => {
       if (err) {
@@ -62,10 +91,15 @@ app.post('/signup', (req, res) => {
           password: password,
           email: email
         })
-        .then((user) => {
+        // var newUser = new User ({
+        //   username: username,
+        //   password: password,
+        //   email: email
+        // })
+        .then((newUser) => {
           res.send(JSON.stringify({
             success: true,
-            username: user.username
+            username: newUser.username
           }));
         })
         .catch((err) => {
@@ -73,6 +107,7 @@ app.post('/signup', (req, res) => {
         })
       }
     })
+    console.log(password);
 })
 
 //post for profile
