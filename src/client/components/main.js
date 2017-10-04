@@ -34,7 +34,7 @@ export default class Main extends React.Component {
 
         // partial profile
 
-        <ListingsContainer />
+        <ListingsContainer listings={this.state.listings} />
         <Drawer width={200} openSecondary={true} open={this.state.openDrawer} >
           <AppBar title="My Profile" onLeftIconButtonTouchTap={this.touchTap}/>
           <h1>You are currently logged in as: </h1>
