@@ -162,8 +162,9 @@ app.post('/listings', (req, res) => {
   });
   newListing.save(function(err, host) {
     if (err) {
-      throw err;
+      res.json({success: false, error: err});
     }
+    res.json({success: true, listing: host});
   });
 });
 

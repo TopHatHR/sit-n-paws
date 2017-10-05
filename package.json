@@ -33,6 +33,7 @@
     "mongoose": "^4.11.13",
     "prop-types": "^15.6.0",
     "react-router-dom": "^4.2.2",
+    "react-file-input": "^0.2.5",
     "require": "^2.4.20"
   },
   "devDependencies": {
