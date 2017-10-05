@@ -17,7 +17,6 @@ export default class Main extends React.Component {
 
     this.touchTap = () => {
       this.setState({openDrawer: !this.state.openDrawer});
-      console.log(this.state.listings);
     }
 
   }

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./db/models/users');
 const Listing = require('./db/models/listing');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 
@@ -52,10 +53,20 @@ app.post('/login', (req, res) => {
         if (found) {
           found.comparePassword(password).then(match => {
             if (match) {
-              res.send(JSON.stringify({
+
+              const payload = {
+                username: found.username
+              };
+
+              let token = jwt.sign(payload, 'Shaken, not stirred', {
+                expiresIn: '1h'
+              });
+
+              res.json({
                 success: true,
                 username: found.username,
-              }));
+                token: token
+              });
             }
           })
         } else {

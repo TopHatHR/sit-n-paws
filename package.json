@@ -27,6 +27,7 @@
     "body-parser": "^1.18.2",
     "crypto": "^1.0.1",
     "express": "^4.15.5",
+    "jsonwebtoken": "^8.0.1",
     "material-ui": "^0.19.2",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.13",
