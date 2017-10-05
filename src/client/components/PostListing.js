@@ -31,11 +31,11 @@ export default class PostListing extends React.Component {
           <label>Home Attributes</label>
           <input type="String" />
 
-          <label>Picture of you</label>
-          <FileInput name="ProfilePicture" accept=".jpg,.png,.gif" onChange={this.handleHostPic} />
+          <label>Picture of you: (URL)</label>
+          <input type="String" />
 
-          <label>Picture of your home</label>
-          <FileInput name="HomePicture" accept=".jpg,.png,.gif" onChange={this.handleHostPic} />
+          <label>Picture of your home: (URL)</label>
+          <input type="String" />
 
         </form>
 
