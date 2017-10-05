@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog from 'material-ui/Dialog';
+
 
 
 export default class PostListing extends React.Component {
@@ -13,30 +13,32 @@ export default class PostListing extends React.Component {
   render() {
     return (
       <div>
+
+        <h1>Sign up to become a pet host!</h1>
         <form>
           <label>Name:</label>
-          <input type="text"  />
+          <input type="text" /><br />
 
           <label>Zip Code:</label>
-          <input type="number" />
+          <input type="number" /><br />
 
           <label>Dog Size Preferences</label>
-          <input type="String" />
+          <input type="String" /><br />
 
           <label>Dog Temperament Preferences</label>
-          <input type="String" />
+          <input type="String" /><br />
 
           <label>Dog Activity Preferences</label>
-          <input type="String" />
+          <input type="String" /><br />
 
           <label>Home Attributes</label>
-          <input type="String" />
+          <textarea type="String" /><br />
 
           <label>Picture of you: (URL)</label>
-          <input type="String" />
+          <input type="String" /><br />
 
           <label>Picture of your home: (URL)</label>
-          <input type="String" />
+          <input type="String" /><br />
 
         </form>
 

@@ -39,6 +39,7 @@ export default class Main extends React.Component {
       <MuiThemeProvider>
       <div>
         <AppBar
+        title="Become A Pet Host!"
         iconElementLeft={<IconButton><Pets/></IconButton>}
         iconElementRight={<IconButton><NavigationMenu/></IconButton>}
         onRightIconButtonTouchTap={this.touchTap}
