@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import jwt from 'jsonwebtoken';
 import LoginSubmit from '../utils/login';
 
 // login form that takes username and password
@@ -49,8 +49,12 @@ export default class Login extends React.Component {
 
       // CALLBACK TO SET PARENT STATE AS LOGGED IN
       LoginSubmit(url, credentials, (res) => {
+        console.log('RES: ', res);
         if(res.success === true) {
-          props.handleLogin(res.username);
+          localStorage.setItem('jwt', res.token);
+          let decoded = jwt.decode(res.token);
+          console.log('DECODED: ', decoded);
+          props.handleLogin();
         } else {
           console.log(res.error);
         }
