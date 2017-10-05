@@ -78,11 +78,15 @@ body, html, #app {
 }
 
 .postListing textarea {
-  padding: 6px 20px;
-  margin-bottom: 2px;
+  padding: 5.5px 20px;
+  margin-bottom: 4px;
 }
 
 .postListing input:focus,
 .postListing textarea:focus {
   border: solid;
+}
+
+.postListing-submit {
+  width: 100%;
 }

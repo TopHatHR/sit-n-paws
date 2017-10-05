@@ -48,14 +48,14 @@ export default class PostListing extends React.Component {
               <label>Dog Size Preferences</label><br />
               <input type="text" name="dogSizePreference" value={this.state.dogSizePreference} /><br />
 
-              <label>Dog Temperament Preferences</label><br />
+              <label>Dog Temperament Preferences:</label><br />
               <input type="text" name="dogTemperatmentPreference" value={this.state.dogTemperatmentPreference} /><br />
             </div>
             <div className="postListing-label">
-              <label>Dog Activity Preferences</label><br />
+              <label>Dog Activity Preferences:</label><br />
               <input type="text" name="dogActivityPreference" value={this.state.dogActivityPreference} /><br />
 
-              <label>Home Attributes</label><br />
+              <label>Description:</label><br />
               <textarea type="text" name="homeAttributes" value={this.state.homeAttributes} /><br />
 
               <label>Picture of you: (URL)</label><br />
@@ -64,17 +64,18 @@ export default class PostListing extends React.Component {
               <label>Picture of your home: (URL)</label><br />
               <input type="text" name="homePictures" value={this.state.homePictures} /><br />
 
-              <div className="dialogButton">
-                <FlatButton
-                  label="Submit"
-                  primary={true}
-                  onClick={() => {
-                    this.handleSubmit();
-                    this.props.handleClose();
-                  }}
-                />
-              </div>
             </div>
+          </div>
+          <div >
+            <FlatButton
+            className="postListing-submit"
+            label="Submit"
+            primary={true}
+            onClick={() => {
+              this.handleSubmit();
+              this.props.handleClose();
+            }}
+            />
           </div>
         </form>
 
