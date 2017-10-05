@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FileInput from 'react-file-input';
+import Dialog from 'material-ui/Dialog';
+
 
 export default class PostListing extends React.Component {
 
@@ -43,3 +44,10 @@ export default class PostListing extends React.Component {
     );
   };
 }
+
+
+PostListing.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired
+
+};
