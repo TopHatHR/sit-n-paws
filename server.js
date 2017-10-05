@@ -15,31 +15,6 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
 })
 
-// post for login information
-// app.post('/login', (req, res) => {
-//   var username = req.body.username;
-//   var password = req.body.password;
-//
-//   User.findOne({ username: username})
-//     .exec((err, found) => {
-//       if (err) {
-//         throw err;
-//         console.log('error');
-//       }
-//       if (found) {
-//         res.send(JSON.stringify({
-//           success: true,
-//           username: found.username,
-//         }));
-//       } else {
-//         res.send(JSON.stringify({
-//           success: false,
-//           error: 'Invalid Username/Password'
-//         }));
-//       }
-//     })
-// });
-
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
@@ -102,11 +77,6 @@ app.post('/signup', (req, res) => {
           password: password,
           email: email
         })
-        // var newUser = new User ({
-        //   username: username,
-        //   password: password,
-        //   email: email
-        // })
         .then((newUser) => {
 
           let payload = {
@@ -154,7 +124,10 @@ app.post('/listings', (req, res) => {
   var newListing = new Listing({
     name: req.body.name,
     zipcode: req.body.zipcode,
-    dogPreferences: req.body.dogPreferences,
+    dogSizePreference: req.body.dogSizePreference,
+    dogBreedPreference: req.body.dogBreedPreference,
+    dogTemperatmentPreference: req.body.dogTemperatmentPreference,
+    dogActivityPreference: req.body.dogActivityPreference,
     homeAttributes: req.body.homeAttributes,
     hostPictures: req.body.hostPictures,
     homePictures: req.body.homePictures,
