@@ -54,7 +54,7 @@ app.post('/login', (req, res) => {
           found.comparePassword(password).then(match => {
             if (match) {
 
-              const payload = {
+              let payload = {
                 username: found.username
               };
 
@@ -108,10 +108,21 @@ app.post('/signup', (req, res) => {
         //   email: email
         // })
         .then((newUser) => {
-          res.send(JSON.stringify({
-            success: true,
+
+          let payload = {
             username: newUser.username
-          }));
+          };
+
+          let token = jwt.sign(payload, 'Shaken, not stirred', {
+            expiresIn: '1h'
+          });
+
+          res.json({
+            success: true,
+            username: newUser.username,
+            token: token
+          });
+
         })
         .catch((err) => {
           console.log(err);

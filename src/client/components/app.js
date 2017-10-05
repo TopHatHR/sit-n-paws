@@ -21,7 +21,7 @@ export default class App extends React.Component {
       // this.setState({isLoggedIn: true, loggedInAs: username});
       let token = localStorage.getItem('jwt');
       console.log("AuthLOGIN RAN", token);
-      if (token) {
+      if (token !== "undefined" && token !== null && token !== undefined) {
         let decoded = jwt.decode(token);
         this.setState({loggedInAs: decoded.username});
         this.setState({isLoggedIn: true});
