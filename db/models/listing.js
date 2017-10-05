@@ -6,16 +6,18 @@ var sitnpaws = require('../config')
 listingSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    zipcode: { type: Number, required: true },
+    zipcode: { type: String, required: true },
     dogSizePreference: { type: String, required: true },
     dogBreedPreference: { type: String, required: true },
     dogTemperatmentPreference: { type: String, required: true },
     dogActivityPreference: { type: String, required: true },
     homeAttributes: { type: String, required: true },
-    hostPictures: { data: Buffer, contentType: String },
-    homePictures: { data: Buffer, contentType: String },
+    hostPictures: { type: String, required: true },
+    // hostPictures: { data: Buffer, contentType: String },
+    homePictures: { type: String, required: true },
+    // homePictures: { data: Buffer, contentType: String },
     //cost per night
-    cost: { type: Number, required: true }
+    cost: { type: String, required: true }
     //user rating
   }
 );
