@@ -12,8 +12,10 @@ listingSchema = new mongoose.Schema(
     dogTemperatmentPreference: { type: String, required: true },
     dogActivityPreference: { type: String, required: true },
     homeAttributes: { type: String, required: true },
-    hostPictures: { data: Buffer, contentType: String },
-    homePictures: { data: Buffer, contentType: String },
+    hostPictures: { type: String, required: true },
+    // hostPictures: { data: Buffer, contentType: String },
+    homePictures: { type: String, required: true },
+    // homePictures: { data: Buffer, contentType: String },
     //cost per night
     cost: { type: Number, required: true }
     //user rating

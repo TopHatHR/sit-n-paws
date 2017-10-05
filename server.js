@@ -5,11 +5,13 @@ const mongoose = require('mongoose');
 const User = require('./db/models/users');
 const Listing = require('./db/models/listing');
 const jwt = require('jsonwebtoken');
+const seedListingDB = require('./seed');
 
 const app = express();
 
 app.use(express.static((__dirname + '/src/public')));
 app.use(bodyParser.json());
+seedListingDB();
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
