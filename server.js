@@ -14,8 +14,11 @@ app.use(bodyParser.json());
 seedListingDB();
 
 
+<<<<<<< HEAD
 
 //post for login information
+=======
+>>>>>>> updated server
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
