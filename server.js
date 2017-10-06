@@ -122,16 +122,13 @@ app.post('/profile', (req, res) => {
 
 //post for listings
 app.post('/listings', (req, res) => {
-  Listing.find({name: req.body.name})
-  .then((err, found) => {
-    if (err) {
-      res.json({success: false, message: err});
-    }
+  Listing.findOne({name: req.body.name})
+  .then((found) => {
     if (found) {
       // update Listing
       Listing.update(req.body);
-      console.log('Updated!');
-      res.json({success: true, message: 'Listing updated!', listing: found});
+      console.log('Updated!', found);
+      res.json({success: true, message: 'Thank you, your listing has been successfully updated!', listing: found});
 
     } else {
       var newListing = new Listing({
@@ -146,14 +143,17 @@ app.post('/listings', (req, res) => {
         homePictures: req.body.homePictures,
         cost: req.body.cost
       });
-      newListing.save(function(err, host) {
+      newListing.save((err, host) => {
         if (err) {
           res.json({success: false, message: err});
+        } else {
+          console.log("Saved ", host);
+          res.json({success: true, message: 'Thank you, your listing has been successfully saved!', listing: host});
         }
-        console.log("Saved ", host);
-        res.json({success: true, listing: host});
       });
     }
+  }).catch((err) => {
+    res.json({success: false, message: err});
   })
 
 });

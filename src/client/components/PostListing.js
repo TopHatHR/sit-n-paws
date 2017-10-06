@@ -20,7 +20,8 @@ export default class PostListing extends React.Component {
       homePictures: '',
       cost: '',
       submitted: false,
-      error: null
+      error: null,
+      message: 'Thank you, your listing has been successfully submitted!'
     }
 
     this.setField = (e) => {
@@ -40,7 +41,9 @@ export default class PostListing extends React.Component {
       loginSubmit(url, this.state, (res) => {
         if (res.success === true) {
           console.log('Listing submitted!');
+          this.setState({message: res.message});
           this.setState({submitted: true});
+
         } else {
           console.log('Error: ', res.error);
         }
@@ -53,7 +56,7 @@ export default class PostListing extends React.Component {
   render() {
     if (this.state.submitted === true) {
       return (
-        <h1> Thank you, your posting has been successfully submitted! </h1>
+        <h1> {this.state.message} </h1>
       )
     } else {
       return (
