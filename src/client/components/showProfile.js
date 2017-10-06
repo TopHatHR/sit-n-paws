@@ -7,6 +7,7 @@ import FileFolder from 'material-ui/svg-icons/file/folder';
 import FontIcon from 'material-ui/FontIcon';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
+import jwt from 'jsonwebtoken';
 
 import {
   blue300,
@@ -24,28 +25,27 @@ export default class ShowProfile extends React.Component {
 
     this.state = {
       Name: null,
-      Phone: null,
-      Address: null
     }
 
     this.styles = {
-      width: 120,
-      height: 120
+      width: 140,
+      height: 140
     }
 
-
-    this.inboxOnClick = (event) => {
-    this.setState({renderInbox: !this.state.renderInbox});
-    }
+  }
+  componentWillMount() {
+    var token = localStorage.jwt;
+    var decoded = jwt.decode(token);
+    this.setState({Name: decoded.username});
   }
 
   render() {
     return (
       <div className='profileBox'>
-        <h1>Name</h1>
+        <h1>{this.state.Name}</h1>
         <Avatar style={this.styles}
-        alt="Adelle Charles"
-        src="https://pbs.twimg.com/profile_images/810142191851016192/Ju6Wj29n_400x400.jpg"
+        alt="User Picture"
+        src="https://i.pinimg.com/736x/63/0f/0e/630f0ef3f6f3126ca11f19f4a9b85243--dachshund-puppies-weenie-dogs.jpg"
         />
       </div>
     );
