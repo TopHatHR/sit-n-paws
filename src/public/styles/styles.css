@@ -93,4 +93,25 @@ body, html, #app {
 
 .postListing-error {
   color: red;
+
+.button {
+  padding: 10px 20px;
+  font-family: monospace;
+  background-color: white;
+  border: 2px solid navy;
+  font-size: 13px;
+}
+
+.button:hover {
+  background-color: gray;
+  color: white;
+}
+
+.input {
+  display: inline;
+  font-size: 15px;
+  font-family: monospace;
+  height: 30px;
+  text-aligh: center;
+  width: 50%;
 }
