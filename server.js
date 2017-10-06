@@ -151,10 +151,15 @@ app.post('/profile', (req, res) => {
 
 //post for listings
 app.post('/listings', (req, res) => {
+
+
   var newListing = new Listing({
     name: req.body.name,
     zipcode: req.body.zipcode,
-    dogPreferences: req.body.dogPreferences,
+    dogSizePreference: req.body.dogSizePreference,
+    dogBreedPreference: req.body.dogBreedPreference,
+    dogTemperatmentPreference: req.body.dogTemperatmentPreference,
+    dogActivityPreference: req.body.dogActivityPreference,
     homeAttributes: req.body.homeAttributes,
     hostPictures: req.body.hostPictures,
     homePictures: req.body.homePictures,
