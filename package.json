@@ -4,7 +4,7 @@
   "description": "Putting a woof over your head",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test --exit",
     "start": "nodemon server.js",
     "build": "webpack",
     "server": "nodemon server.js",
@@ -43,11 +43,15 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "chai": "^4.1.2",
+    "chai-things": "^0.2.0",
     "css-loader": "^0.28.7",
     "file-loader": "^0.11.2",
+    "mocha": "^4.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "style-loader": "^0.18.2",
+    "supertest": "^3.0.0",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
   }
