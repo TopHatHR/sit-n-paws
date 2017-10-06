@@ -1,5 +1,6 @@
 import React from 'react';
 import ListingsContainer from './listingsContainer.js';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -25,6 +26,7 @@ export default class Main extends React.Component {
 
   render() {
     return (
+      <MuiThemeProvider>
       <div>
         <AppBar showMenuIconButton={false} iconElementRight={<IconButton><NavigationMenu/></IconButton>} onRightIconButtonTouchTap={this.touchTap} />
         <h1>MAIN COMPONENT</h1>
@@ -41,6 +43,7 @@ export default class Main extends React.Component {
 
 
       </div>
+      </MuiThemeProvider>
     )
   }
 }
