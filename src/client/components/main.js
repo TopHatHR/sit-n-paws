@@ -42,6 +42,11 @@ export default class Main extends React.Component {
     this.getListings = (query) => {
       this.get(query);
     }
+
+    this.postListing = () => {
+      this.setState({openPostListing: !this.state.openPostListing});
+    }
+
   }
 
   render() {
