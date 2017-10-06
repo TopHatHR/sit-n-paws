@@ -151,20 +151,40 @@ app.post('/profile', (req, res) => {
 
 //post for listings
 app.post('/listings', (req, res) => {
-  var newListing = new Listing({
-    name: req.body.name,
-    zipcode: req.body.zipcode,
-    dogPreferences: req.body.dogPreferences,
-    homeAttributes: req.body.homeAttributes,
-    hostPictures: req.body.hostPictures,
-    homePictures: req.body.homePictures,
-    cost: req.body.cost
-  });
-  newListing.save(function(err, host) {
+  Listing.find({name: req.body.name})
+  .then((err, found) => {
     if (err) {
-      throw err;
+      res.json({success: false, message: err});
     }
-  });
+    if (found) {
+      // update Listing
+      Listing.update(req.body);
+      console.log('Updated!');
+      res.json({success: true, message: 'Listing updated!', listing: found});
+
+    } else {
+      var newListing = new Listing({
+        name: req.body.name,
+        zipcode: req.body.zipcode,
+        dogSizePreference: req.body.dogSizePreference,
+        dogBreedPreference: req.body.dogBreedPreference,
+        dogTemperamentPreference: req.body.dogTemperamentPreference,
+        dogActivityPreference: req.body.dogActivityPreference,
+        homeAttributes: req.body.homeAttributes,
+        hostPictures: req.body.hostPictures,
+        homePictures: req.body.homePictures,
+        cost: req.body.cost
+      });
+      newListing.save(function(err, host) {
+        if (err) {
+          res.json({success: false, message: err});
+        }
+        console.log("Saved ", host);
+        res.json({success: true, listing: host});
+      });
+    }
+  })
+
 });
 
 //get for listings (all)

@@ -58,3 +58,39 @@ body, html, #app {
   color: #fff;
   padding: 20px;
 }
+.postListing {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 360px));
+  grid-gap: 5px;
+  justify-content: left;
+
+}
+
+.postListing-label label {
+  font-weight: bold;
+}
+
+.postListing input,
+.postListing textarea {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px;
+}
+
+.postListing textarea {
+  padding: 5.5px 20px;
+  margin-bottom: 4px;
+}
+
+.postListing input:focus,
+.postListing textarea:focus {
+  border: solid;
+}
+
+.postListing-submit {
+  width: 100%;
+}
+
+.postListing-error {
+  color: red;
+}

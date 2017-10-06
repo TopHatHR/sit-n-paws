@@ -9,7 +9,7 @@ listingSchema = new mongoose.Schema(
     zipcode: { type: Number, required: true },
     dogSizePreference: { type: String, required: true },
     dogBreedPreference: { type: String, required: true },
-    dogTemperatmentPreference: { type: String, required: true },
+    dogTemperamentPreference: { type: String, required: true },
     dogActivityPreference: { type: String, required: true },
     homeAttributes: { type: String, required: true },
     hostPictures: { type: String, required: true },

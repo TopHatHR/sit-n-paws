@@ -1,11 +1,14 @@
 import React from 'react';
 import ListingsContainer from './listingsContainer.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import PostListing from './PostListing.js';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import Pets from 'material-ui/svg-icons/action/pets';
 import exampleListingData from '../../public/MOCK_DATA.js';
+import Dialog from 'material-ui/Dialog';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -14,11 +17,18 @@ export default class Main extends React.Component {
     this.state = {
       listings: exampleListingData,
       openDrawer: false,
+      openPostListing: false,
     }
 
     this.touchTap = () => {
       this.setState({openDrawer: !this.state.openDrawer});
     }
+
+    this.postListing = () => {
+      this.setState({openPostListing: !this.state.openPostListing});
+    }
+
+
 
   }
 
@@ -28,7 +38,15 @@ export default class Main extends React.Component {
     return (
       <MuiThemeProvider>
       <div>
-        <AppBar showMenuIconButton={false} iconElementRight={<IconButton><NavigationMenu/></IconButton>} onRightIconButtonTouchTap={this.touchTap} />
+        <AppBar
+        title="Become A Pet Host!"
+        iconElementLeft={<IconButton><Pets/></IconButton>}
+        iconElementRight={<IconButton><NavigationMenu/></IconButton>}
+        onRightIconButtonTouchTap={this.touchTap}
+        onLeftIconButtonTouchTap={this.postListing}
+        >
+
+        </AppBar>
         <h1>MAIN COMPONENT</h1>
 
         // drawer
@@ -40,6 +58,13 @@ export default class Main extends React.Component {
           <AppBar title="My Profile" onLeftIconButtonTouchTap={this.touchTap}/>
           <h1>You are currently logged in as: </h1>
         </Drawer>
+        <Dialog
+          modal={false}
+          open={this.state.openPostListing}
+          onRequestClose={this.postListing}
+        >
+          <PostListing />
+        </Dialog>
 
 
       </div>
