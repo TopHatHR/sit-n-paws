@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import jwt from 'jsonwebtoken';
 import LoginSubmit from '../utils/login';
 
@@ -14,20 +12,11 @@ export default class Login extends React.Component {
     super(props);
 
     this.state = {
-      open: true,
       username: '',
       password: '',
       registerUsername: '',
       registerPassword: '',
       registerEmail: ''
-    }
-
-    this.handleOpen = () => {
-      this.setState({open: true});
-    }
-
-    this.handleClose = () => {
-      this.setState({open: false});
     }
 
     this.handleSubmit = (e, register) => {
@@ -86,20 +75,21 @@ export default class Login extends React.Component {
 
   }
 
+  componentWillMount() {
+    let token = localStorage.getItem('jwt');
+    if (token !== "undefined" && token !== null && token !== undefined) {
+      let decoded = jwt.decode(token);
+      this.props.history.push('/main');
+    }
+  }
+
   render() {
 
     return (
       <MuiThemeProvider>
       <div>
-        <Dialog
-          modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-        >
-
-          <div className="wrapper">
-
-            <div>
+          <div className="wrapper login-forms-container">
+            <div className="login-forms">
               <h1>LOGIN</h1>
               <form>
                 <label>username</label>
@@ -107,20 +97,22 @@ export default class Login extends React.Component {
                 <br />
                 <label>password</label>
                 <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                <div className="login-form-welcomeBack">
+                  <em>Welcome Back!</em>
+                </div>
               </form>
-              <div className="dialogButton">
+              <div className="login-form-button">
                 <FlatButton
                   label="Submit"
                   primary={true}
                   onClick={() => {
                     this.handleSubmit();
-                    this.handleClose();
                   }}
                 />
               </div>
             </div>
 
-            <div>
+            <div className="login-forms">
               <h1>REGISTER</h1>
               <form>
                 <label>email</label>
@@ -132,19 +124,17 @@ export default class Login extends React.Component {
                 <label>password</label>
                 <input type="password" value={this.state.registerPassword} onChange={(e) => this.handlePasswordChange(e, 'register')} />
               </form>
-              <div className="dialogButton">
+              <div className="login-form-button">
                 <FlatButton
                   label="Register"
                   primary={true}
                   onClick={(e) => {
                     this.handleSubmit(e, 'register');
-                    this.handleClose();
                   }}
                 />
               </div>
             </div>
           </div>
-        </Dialog>
        </div>
       </MuiThemeProvider>
     );
