@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom';
 const Home = (props) => (
   <div className="landingImage">
     <div className="landingBlock">
-      <span className="border">
+      <div>
+        <span className="border">
         sit-n-paws
-      <Link to='/login'>Login / Register</Link>
-      </span>
+        </span>
+      </div>
+      <div>
+
+          <Link to='/login'><span className="landingLoginLink">Login / Register</span></Link>
+
+      </div>
     </div>
   </div>
 )
