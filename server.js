@@ -106,6 +106,8 @@ app.post('/signup', (req, res) => {
     console.log(password);
 })
 
+
+
 //post for profile
 app.post('/profile', (req, res) => {
   var email = req.body.email;
