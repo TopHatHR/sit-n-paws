@@ -15,6 +15,7 @@ seedListingDB();
 
 
 
+//post for login information
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;

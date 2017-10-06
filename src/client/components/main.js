@@ -10,6 +10,10 @@ import Pets from 'material-ui/svg-icons/action/pets';
 import exampleListingData from '../../public/MOCK_DATA.js';
 import Dialog from 'material-ui/Dialog';
 import Search from './search.js'
+import RaisedButton from 'material-ui/RaisedButton';
+import InboxContainer from './inbox.js';
+import ProfileUpdate from './profileForm.js';
+import ShowProfile from './showProfile.js';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -20,6 +24,8 @@ export default class Main extends React.Component {
       query: '',
       openDrawer: false,
       openPostListing: false,
+      renderInbox: false,
+      renderProfile: false,
     }
 
     this.touchTap = () => {
@@ -42,12 +48,23 @@ export default class Main extends React.Component {
     this.getListings = (query) => {
       this.get(query);
     }
+    this.styles = {
+    margin: 40,
+    }
+
+    this.inboxOnClick = (event) => {
+      this.setState({renderInbox: !this.state.renderInbox});
+    }
+
+    this.profileOnClick = (event) => {
+      this.setState({renderProfile: !this.state.renderProfile});
+    }
 
     this.postListing = () => {
       this.setState({openPostListing: !this.state.openPostListing});
     }
-
   }
+
 
   render() {
     return (
@@ -69,9 +86,13 @@ export default class Main extends React.Component {
         // partial profile
 
         <ListingsContainer listings={this.state.listings} />
-        <Drawer width={200} openSecondary={true} open={this.state.openDrawer} >
-          <AppBar title="My Profile" onLeftIconButtonTouchTap={this.touchTap}/>
-          <h1>You are currently logged in as: </h1>
+        <Drawer width={400} openSecondary={true} open={this.state.openDrawer} >
+          <AppBar title="Sit-n-Paws Profile" onLeftIconButtonTouchTap={this.touchTap}/>
+          <ShowProfile/>
+          <RaisedButton onClick={this.profileOnClick} label="Edit Profile" primary={true} style={this.styles} />
+          <RaisedButton onClick={this.inboxOnClick} label="Inbox" primary={true} style={this.styles}/>
+          {this.state.renderInbox ? <InboxContainer/> : null}
+          {this.state.renderProfile ? <ProfileUpdate/> : null}
         </Drawer>
         <Dialog
           modal={false}

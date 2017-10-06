@@ -116,3 +116,10 @@ body, html, #app {
   text-aligh: center;
   width: 50%;
 }
+.messageBox {
+  text-align: center;
+}
+
+.profileBox {
+  text-align: center;
+}
