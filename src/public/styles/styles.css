@@ -1,5 +1,6 @@
 body, html, #app {
   height: 100%;
+  font-family: "Lato", sans-serif;
   margin: 0 auto;
 }
 
@@ -11,10 +12,14 @@ body, html, #app {
   grid-auto-flow: row;
 }
 
-@media only screen and (max-width: 360px) {
-.wrapper {
+@media only screen and (max-width: 420px) {
+  .wrapper {
     grid-template-columns: 1fr;
    }
+  .login-forms {
+    margin: 0 auto;
+    width: 80%;
+  }
 }
 
 .wrapper div {
@@ -23,13 +28,15 @@ body, html, #app {
 
 .wrapper form {
   min-height: 125px;
-  width: 180px;
+  width: 200px;
   margin: 0 auto;
 }
 
-.dialogButton {
-  position: relative;
+.login-form-button {
+  width: 120px;
+  position: absolute;
   bottom: 0;
+  left: 31%;
 }
 
 .landingImage {
@@ -48,8 +55,9 @@ body, html, #app {
   width: 100%;
   text-align: center;
   color: #000;
-  font-size: 27px;
+  font-size: 1.5em;
   letter-spacing: 8px;
+  line-height: 57px;
   text-transform: uppercase;
 }
 
@@ -58,6 +66,49 @@ body, html, #app {
   color: #fff;
   padding: 20px;
 }
+
+.landingBlock a {
+  text-decoration: none;
+}
+
+.landingLoginLink {
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.76) 0px 1px 1px;
+  font-weight: 800;
+}
+
+.landingLoginLink:hover {
+  color: rgb(0, 188, 212);
+  text-shadow: rgba(0, 0, 0, 0.76) 0px 1px 1px;
+}
+
+.login-forms-container {
+  margin-top: 20%;
+}
+
+.login-forms {
+  min-height: 250px;
+  max-width: 320px;
+  border: 2px solid black;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+  position: relative;
+}
+
+.login-forms h1 {
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+
+.login-forms input {
+  margin-top: 5px;
+}
+
+.login-form-welcomeBack {
+  margin-top: 18px;
+  letter-spacing: 3px;
+  color: #999;
+}
+
 .postListing {
   display: grid;
   grid-template-columns: repeat(2, minmax(200px, 360px));
