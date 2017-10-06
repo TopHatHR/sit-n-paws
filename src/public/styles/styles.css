@@ -146,26 +146,21 @@ body, html, #app {
   color: red;
 }
 
-.button {
-  padding: 10px 20px;
-  font-family: monospace;
-  background-color: white;
-  border: 2px solid navy;
-  font-size: 13px;
-}
-
-.button:hover {
-  background-color: gray;
-  color: white;
-}
-
-.input {
-  display: inline;
+input {
+  display: block;
   font-size: 15px;
   font-family: monospace;
   height: 30px;
-  text-aligh: center;
+  text-align: center;
   width: 50%;
+  margin: 0 auto;
+}
+
+.searchBar {
+  text-align: center;
+  margin: 0 auto;
+  font-family: monospace;
+
 }
 .messageBox {
   text-align: center;

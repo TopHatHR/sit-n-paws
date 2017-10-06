@@ -14,6 +14,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import InboxContainer from './inbox.js';
 import ProfileUpdate from './profileForm.js';
 import ShowProfile from './showProfile.js';
+import request from 'superagent';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -28,26 +29,12 @@ export default class Main extends React.Component {
       renderProfile: false,
     }
 
+    this.handleChange = this.handleChange.bind(this);
+
     this.touchTap = () => {
       this.setState({openDrawer: !this.state.openDrawer});
     }
 
-    this.get = (query) => {
-      var url = 'http://localhost:3000/listings';
-      fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        // if (data.zipcode === )
-        this.setState({listings: data});
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    }
-
-    this.getListings = (query) => {
-      this.get(query);
-    }
     this.styles = {
     margin: 40,
     }
@@ -65,6 +52,18 @@ export default class Main extends React.Component {
     }
   }
 
+  handleChange(term) {
+    const url = `http://localhost:3000/listings/${term}`;
+    request.get(url, (err, res) => {
+      console.log('my res body', res.body);
+      this.setState({listings:res.body})
+    })
+  }
+
+  // componentDidMount() {
+  //   this.handleChange('94123');
+  // }
+
 
   render() {
     return (
@@ -79,11 +78,10 @@ export default class Main extends React.Component {
         >
 
         </AppBar>
-        <h1>MAIN COMPONENT</h1>
-        <Search onClick={this.getListings.bind(this)}/>
-        // drawer
+        <h1>Search for a Host Here:</h1>
 
-        // partial profile
+        <Search onChange={this.handleChange}/>
+        <br/>
 
         <ListingsContainer listings={this.state.listings} />
         <Drawer width={400} openSecondary={true} open={this.state.openDrawer} >

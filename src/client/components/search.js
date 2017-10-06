@@ -1,27 +1,27 @@
 import React from 'react';
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      value: ''
+      query: ''
     }
   }
 
-  onInputChange(e) {
-    this.setState({value: e.target.value});
-    this.props.onClick(e.target.value);
+  onInputChange(query) {
+    this.setState({query});
+    this.props.onChange(query);
   }
+
   render() {
     return (
       <div>
-        <input className="input"
-               placeholder="Enter a Zipcode to Search!"
-               type="text" />
-        <input onClick={this.onInputChange.bind(this)} className="button" type="button" value="search"></input>
+        <input className="searchBar"
+               placeholder="Enter a Zipcode to Get Started!"
+               type="text"
+               onChange={event => this.onInputChange(event.target.value)} />
         </div>
       )
-
   }
 }
 

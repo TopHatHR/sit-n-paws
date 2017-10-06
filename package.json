@@ -35,7 +35,8 @@
     "prop-types": "^15.6.0",
     "react-file-input": "^0.2.5",
     "react-router-dom": "^4.2.2",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "superagent": "^3.6.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
