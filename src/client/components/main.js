@@ -11,7 +11,6 @@ import exampleListingData from '../../public/MOCK_DATA.js';
 import Dialog from 'material-ui/Dialog';
 import Search from './search.js'
 import RaisedButton from 'material-ui/RaisedButton';
-import InboxContainer from './inbox.js';
 import ProfileUpdate from './profileForm.js';
 import ShowProfile from './showProfile.js';
 import request from 'superagent';
@@ -25,7 +24,6 @@ export default class Main extends React.Component {
       query: '',
       openDrawer: false,
       openPostListing: false,
-      renderInbox: false,
       renderProfile: false,
     }
 
@@ -39,8 +37,9 @@ export default class Main extends React.Component {
     margin: 40,
     }
 
-    this.inboxOnClick = (event) => {
-      this.setState({renderInbox: !this.state.renderInbox});
+    this.logoutOnClick = (event) => {
+      localStorage.removeItem('jwt');
+      window.location.reload();
     }
 
     this.profileOnClick = (event) => {
@@ -88,8 +87,7 @@ export default class Main extends React.Component {
           <AppBar title="Sit-n-Paws Profile" onLeftIconButtonTouchTap={this.touchTap}/>
           <ShowProfile/>
           <RaisedButton onClick={this.profileOnClick} label="Edit Profile" primary={true} style={this.styles} />
-          <RaisedButton onClick={this.inboxOnClick} label="Inbox" primary={true} style={this.styles}/>
-          {this.state.renderInbox ? <InboxContainer/> : null}
+          <RaisedButton onClick={this.logoutOnClick} label="Log Out" primary={true} style={this.styles}/>
           {this.state.renderProfile ? <ProfileUpdate/> : null}
         </Drawer>
         <Dialog
