@@ -14,11 +14,9 @@ export default class ListingsContainer extends React.Component {
         {this.props.listings.map((listing, i) => {
           console.log(this.props.query);
           // if (listing.zipcode)
-          if (i < 10) {
             return (
               <ListingView listing={listing} key={listing.name} />
             )
-          }
         })}
       </div>
     );
