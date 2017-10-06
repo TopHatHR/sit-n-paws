@@ -152,11 +152,15 @@ app.post('/profile', (req, res) => {
 //post for listings
 app.post('/listings', (req, res) => {
   Listing.find({name: req.body.name})
-  .then((found) => {
+  .then((err, found) => {
+    if (err) {
+      res.json({success: false, message: err});
+    }
     if (found) {
       // update Listing
       Listing.update(req.body);
-      res.json({success: true})
+      console.log('Updated!');
+      res.json({success: true, message: 'Listing updated!', listing: found});
 
     } else {
       var newListing = new Listing({
@@ -164,7 +168,7 @@ app.post('/listings', (req, res) => {
         zipcode: req.body.zipcode,
         dogSizePreference: req.body.dogSizePreference,
         dogBreedPreference: req.body.dogBreedPreference,
-        dogTemperamentPreference: req.body.dogTemperatmentPreference,
+        dogTemperamentPreference: req.body.dogTemperamentPreference,
         dogActivityPreference: req.body.dogActivityPreference,
         homeAttributes: req.body.homeAttributes,
         hostPictures: req.body.hostPictures,
@@ -173,8 +177,9 @@ app.post('/listings', (req, res) => {
       });
       newListing.save(function(err, host) {
         if (err) {
-          res.json({success: false, error: err});
+          res.json({success: false, message: err});
         }
+        console.log("Saved ", host);
         res.json({success: true, listing: host});
       });
     }

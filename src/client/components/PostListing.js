@@ -70,11 +70,14 @@ export default class PostListing extends React.Component {
                 <label>Zip Code:</label><br />
                 <input type="number" name="zipcode" value={this.state.zipcode} /><br />
 
-                <label>Dog Size Preferences</label><br />
+                <label>Dog Size Preference</label><br />
                 <input type="text" name="dogSizePreference" value={this.state.dogSizePreference} /><br />
 
-                <label>Dog Temperament Preferences:</label><br />
+                <label>Dog Temperament Preference:</label><br />
                 <input type="text" name="dogTemperamentPreference" value={this.state.dogTemperamentPreference} /><br />
+
+                <label>Dog Breed Preference:</label><br />
+                <input type="text" name="dogBreedPreference" value={this.state.dogBreedPreference} /><br />
               </div>
               <div className="postListing-label">
                 <label>Dog Activity Preferences:</label><br />
@@ -88,6 +91,9 @@ export default class PostListing extends React.Component {
 
                 <label>Picture of your home: (URL)</label><br />
                 <input type="text" name="homePictures" value={this.state.homePictures} /><br />
+
+                <label>Cost Per Night: </label><br />
+                <input type="text" name="cost" value={this.state.cost} /><br />
 
               </div>
             </div>
