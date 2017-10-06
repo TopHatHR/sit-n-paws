@@ -13,7 +13,7 @@ export default class PostListing extends React.Component {
       zipcode: '',
       dogSizePreference: '',
       dogBreedPreference: '',
-      dogTemperatmentPreference: '',
+      dogTemperamentPreference: '',
       dogActivityPreference: '',
       homeAttributes: '',
       hostPictures: '',
@@ -74,7 +74,7 @@ export default class PostListing extends React.Component {
                 <input type="text" name="dogSizePreference" value={this.state.dogSizePreference} /><br />
 
                 <label>Dog Temperament Preferences:</label><br />
-                <input type="text" name="dogTemperatmentPreference" value={this.state.dogTemperatmentPreference} /><br />
+                <input type="text" name="dogTemperamentPreference" value={this.state.dogTemperamentPreference} /><br />
               </div>
               <div className="postListing-label">
                 <label>Dog Activity Preferences:</label><br />

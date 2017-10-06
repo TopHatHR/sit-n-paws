@@ -151,26 +151,35 @@ app.post('/profile', (req, res) => {
 
 //post for listings
 app.post('/listings', (req, res) => {
+  Listing.find({name: req.body.name})
+  .then((found) => {
+    if (found) {
+      // update Listing
+      Listing.update(req.body);
+      res.json({success: true})
 
-
-  var newListing = new Listing({
-    name: req.body.name,
-    zipcode: req.body.zipcode,
-    dogSizePreference: req.body.dogSizePreference,
-    dogBreedPreference: req.body.dogBreedPreference,
-    dogTemperatmentPreference: req.body.dogTemperatmentPreference,
-    dogActivityPreference: req.body.dogActivityPreference,
-    homeAttributes: req.body.homeAttributes,
-    hostPictures: req.body.hostPictures,
-    homePictures: req.body.homePictures,
-    cost: req.body.cost
-  });
-  newListing.save(function(err, host) {
-    if (err) {
-      res.json({success: false, error: err});
+    } else {
+      var newListing = new Listing({
+        name: req.body.name,
+        zipcode: req.body.zipcode,
+        dogSizePreference: req.body.dogSizePreference,
+        dogBreedPreference: req.body.dogBreedPreference,
+        dogTemperamentPreference: req.body.dogTemperatmentPreference,
+        dogActivityPreference: req.body.dogActivityPreference,
+        homeAttributes: req.body.homeAttributes,
+        hostPictures: req.body.hostPictures,
+        homePictures: req.body.homePictures,
+        cost: req.body.cost
+      });
+      newListing.save(function(err, host) {
+        if (err) {
+          res.json({success: false, error: err});
+        }
+        res.json({success: true, listing: host});
+      });
     }
-    res.json({success: true, listing: host});
-  });
+  })
+
 });
 
 //get for listings (all)
