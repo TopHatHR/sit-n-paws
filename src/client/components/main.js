@@ -30,13 +30,9 @@ export default class Main extends React.Component {
       this.setState({openPostListing: !this.state.openPostListing});
     }
 
-
-
-  }
-
     this.get = (query) => {
-    var url = 'http://localhost:3000/listings';
-    fetch(url)
+      var url = 'http://localhost:3000/listings';
+      fetch(url)
       .then((res) => res.json())
       .then((data) => {
         // if (data.zipcode === )
@@ -45,12 +41,14 @@ export default class Main extends React.Component {
       .catch((err) => {
         console.log(err);
       });
-    };
+    }
 
     this.getListings = (query) => {
       this.get(query);
     }
+
   }
+
 
   render() {
     return (
