@@ -151,27 +151,4 @@ export default class Login extends React.Component {
   }
 }
 
-<<<<<<< HEAD
 Login.propTypes = {handleLogin: PropTypes.func.isRequired};
-=======
-
-// const Login = (props) => {
-
-//   return (
-//       <div>
-//         <h1>LOGIN</h1>
-//         <form>
-//           <label>username</label>
-//           <input type="text" />
-//           <label>password</label>
-//           <input type="password" />
-//           <input type="submit" value="login" />
-//         </form>
-//       </div>
-//     )
-// }
-
-
-// export default Login;
-
->>>>>>> added schemas

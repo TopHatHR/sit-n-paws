@@ -14,11 +14,8 @@ app.use(bodyParser.json());
 seedListingDB();
 
 
-<<<<<<< HEAD
 
 //post for login information
-=======
->>>>>>> updated server
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
@@ -106,8 +103,6 @@ app.post('/signup', (req, res) => {
     console.log(password);
 })
 
-
-
 //post for profile
 app.post('/profile', (req, res) => {
   var email = req.body.email;
@@ -127,25 +122,8 @@ app.post('/profile', (req, res) => {
 
 //post for listings
 app.post('/listings', (req, res) => {
-<<<<<<< HEAD
-<<<<<<< HEAD
   Listing.find({name: req.body.name})
   .then((err, found) => {
-=======
-  var newListing = new Listing {
-=======
-  var newListing = new Listing ({
->>>>>>> front end and backend almost set up
-    name: req.body.name,
-    zipcode: req.body.zipcode,
-    dogPreferences: req.body.dogPreferences,
-    homeAttributes: req.body.homeAttributes,
-    hostPictures: req.body.hostPictures,
-    homePictures: req.body.homePictures,
-    cost: req.body.cost
-  });
-  newListing.save(function(err, host) {
->>>>>>> front end and backend almost set up
     if (err) {
       res.json({success: false, message: err});
     }
@@ -180,7 +158,6 @@ app.post('/listings', (req, res) => {
 
 });
 
-<<<<<<< HEAD
 //get for listings (all)
 app.get('/listings', (req, res) => {
   Listing.find({})
@@ -207,33 +184,10 @@ app.get('/listings', (req, res) => {
       }
     })
 })
-<<<<<<< HEAD
 
 app.get('*', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
 })
-=======
-//post for owner profile
-app.post('/ownerprofile', (req, res) => {
-
-})
-
-//post for host profile
-app.post('/hostprofile', (req, res) => {
-
-})
-
-//post for listings
-app.post('/listings', (req, res) => {
-
-})
-
-//get for listings
-
-
->>>>>>> added schemas
-=======
->>>>>>> front end and backend almost set up
 
 app.listen(3000, () => {
   console.log('Listening on localhost:3000');

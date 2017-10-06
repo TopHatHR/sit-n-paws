@@ -37,7 +37,6 @@ export default class App extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
     return(
     <BrowserRouter history={browserHistory}>
       <Switch>
@@ -52,31 +51,5 @@ export default class App extends React.Component {
       </Switch>
     </BrowserRouter>
     )
-=======
-    // IS LOGGED IN
-    if(this.state.isLoggedIn) {
-      return (
-        <div>
-          <MuiThemeProvider>
-            <Main/>
-          </MuiThemeProvider>
-
-        </div>
-      );
-
-    } else {
-    // LOGGED OUT
-      return (
-        <div>
-          <h1>Hello from LOGGED OUT React</h1>
-          <MuiThemeProvider>
-            <Login
-              handleLogin={this.authLogin}
-            />
-          </MuiThemeProvider>
-        </div>
-      );
-    }
->>>>>>> updated drawer component
   }
 }

@@ -32,7 +32,6 @@ body, html, #app {
   bottom: 0;
 }
 
-<<<<<<< HEAD
 .landingImage {
   opacity: 0.70;
   background-image: url('../assets/landingImage.jpeg');
@@ -117,7 +116,6 @@ body, html, #app {
   text-aligh: center;
   width: 50%;
 }
-=======
 .messageBox {
   text-align: center;
 }
@@ -125,4 +123,3 @@ body, html, #app {
 .profileBox {
   text-align: center;
 }
->>>>>>> updated drawer component

@@ -8,15 +8,12 @@ import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Pets from 'material-ui/svg-icons/action/pets';
 import exampleListingData from '../../public/MOCK_DATA.js';
-<<<<<<< HEAD
 import Dialog from 'material-ui/Dialog';
 import Search from './search.js'
-=======
 import RaisedButton from 'material-ui/RaisedButton';
 import InboxContainer from './inbox.js';
 import ProfileUpdate from './profileForm.js';
 import ShowProfile from './showProfile.js';
->>>>>>> updated drawer component
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -26,19 +23,15 @@ export default class Main extends React.Component {
       listings: [],
       query: '',
       openDrawer: false,
-<<<<<<< HEAD
       openPostListing: false,
-=======
       renderInbox: false,
       renderProfile: false,
->>>>>>> updated drawer component
     }
 
     this.touchTap = () => {
       this.setState({openDrawer: !this.state.openDrawer});
     }
 
-<<<<<<< HEAD
     this.get = (query) => {
       var url = 'http://localhost:3000/listings';
       fetch(url)
@@ -55,7 +48,6 @@ export default class Main extends React.Component {
     this.getListings = (query) => {
       this.get(query);
     }
-=======
     this.styles = {
     margin: 40,
     }
@@ -67,14 +59,12 @@ export default class Main extends React.Component {
     this.profileOnClick = (event) => {
       this.setState({renderProfile: !this.state.renderProfile});
     }
-  }
->>>>>>> updated drawer component
 
     this.postListing = () => {
       this.setState({openPostListing: !this.state.openPostListing});
     }
-
   }
+
 
   render() {
     return (
@@ -88,7 +78,6 @@ export default class Main extends React.Component {
         onLeftIconButtonTouchTap={this.postListing}
         >
 
-<<<<<<< HEAD
         </AppBar>
         <h1>MAIN COMPONENT</h1>
         <Search onClick={this.getListings.bind(this)}/>
@@ -96,8 +85,6 @@ export default class Main extends React.Component {
 
         // partial profile
 
-=======
->>>>>>> updated drawer component
         <ListingsContainer listings={this.state.listings} />
         <Drawer width={400} openSecondary={true} open={this.state.openDrawer} >
           <AppBar title="Sit-n-Paws Profile" onLeftIconButtonTouchTap={this.touchTap}/>
@@ -107,7 +94,6 @@ export default class Main extends React.Component {
           {this.state.renderInbox ? <InboxContainer/> : null}
           {this.state.renderProfile ? <ProfileUpdate/> : null}
         </Drawer>
-<<<<<<< HEAD
         <Dialog
           modal={false}
           open={this.state.openPostListing}
@@ -117,8 +103,6 @@ export default class Main extends React.Component {
         </Dialog>
 
 
-=======
->>>>>>> updated drawer component
       </div>
       </MuiThemeProvider>
     )
