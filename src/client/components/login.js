@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -55,8 +56,10 @@ export default class Login extends React.Component {
           let decoded = jwt.decode(res.token);
           console.log('DECODED: ', decoded);
           props.handleLogin();
+          props.history.push('/main');
         } else {
           console.log(res.error);
+          props.history.push('/main');
         }
       })
     }
@@ -86,8 +89,8 @@ export default class Login extends React.Component {
   render() {
 
     return (
+      <MuiThemeProvider>
       <div>
-        <RaisedButton label="Dialog" onClick={this.handleOpen} />
         <Dialog
           modal={false}
           open={this.state.open}
@@ -142,7 +145,8 @@ export default class Login extends React.Component {
             </div>
           </div>
         </Dialog>
-      </div>
+       </div>
+      </MuiThemeProvider>
     );
   }
 }

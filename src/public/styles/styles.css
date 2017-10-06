@@ -1,10 +1,14 @@
+body, html, #app {
+  height: 100%;
+  margin: 0 auto;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(2, minmax(200px, 360px));
   grid-gap: 10px;
   justify-content: center;
   grid-auto-flow: row;
-
 }
 
 @media only screen and (max-width: 360px) {
@@ -26,4 +30,31 @@
 .dialogButton {
   position: relative;
   bottom: 0;
+}
+
+.landingImage {
+  opacity: 0.70;
+  background-image: url('../assets/landingImage.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100%;
+}
+
+.landingBlock {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 27px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+
+.landingBlock .border {
+  background-color: black;
+  color: #fff;
+  padding: 20px;
 }

@@ -13,9 +13,7 @@ app.use(express.static((__dirname + '/src/public')));
 app.use(bodyParser.json());
 seedListingDB();
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/src/public/index.html');
-})
+
 
 // post for login information
 // app.post('/login', (req, res) => {
@@ -194,6 +192,10 @@ app.get('/listings', (req, res) => {
         })
       }
     })
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/src/public/index.html');
 })
 
 app.listen(3000, () => {
