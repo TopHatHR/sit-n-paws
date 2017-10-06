@@ -26,10 +26,6 @@ export default class Main extends React.Component {
       this.setState({openDrawer: !this.state.openDrawer});
     }
 
-    this.postListing = () => {
-      this.setState({openPostListing: !this.state.openPostListing});
-    }
-
     this.get = (query) => {
       var url = 'http://localhost:3000/listings';
       fetch(url)
@@ -46,9 +42,7 @@ export default class Main extends React.Component {
     this.getListings = (query) => {
       this.get(query);
     }
-
   }
-
 
   render() {
     return (
