@@ -15,31 +15,6 @@ seedListingDB();
 
 
 
-// post for login information
-// app.post('/login', (req, res) => {
-//   var username = req.body.username;
-//   var password = req.body.password;
-//
-//   User.findOne({ username: username})
-//     .exec((err, found) => {
-//       if (err) {
-//         throw err;
-//         console.log('error');
-//       }
-//       if (found) {
-//         res.send(JSON.stringify({
-//           success: true,
-//           username: found.username,
-//         }));
-//       } else {
-//         res.send(JSON.stringify({
-//           success: false,
-//           error: 'Invalid Username/Password'
-//         }));
-//       }
-//     })
-// });
-
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
@@ -102,11 +77,6 @@ app.post('/signup', (req, res) => {
           password: password,
           email: email
         })
-        // var newUser = new User ({
-        //   username: username,
-        //   password: password,
-        //   email: email
-        // })
         .then((newUser) => {
 
           let payload = {

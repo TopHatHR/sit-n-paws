@@ -9,13 +9,15 @@ import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Pets from 'material-ui/svg-icons/action/pets';
 import exampleListingData from '../../public/MOCK_DATA.js';
 import Dialog from 'material-ui/Dialog';
+import Search from './search.js'
 
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      listings: exampleListingData,
+      listings: [],
+      query: '',
       openDrawer: false,
       openPostListing: false,
     }
@@ -24,15 +26,28 @@ export default class Main extends React.Component {
       this.setState({openDrawer: !this.state.openDrawer});
     }
 
+    this.get = (query) => {
+      var url = 'http://localhost:3000/listings';
+      fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        // if (data.zipcode === )
+        this.setState({listings: data});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+
+    this.getListings = (query) => {
+      this.get(query);
+    }
+
     this.postListing = () => {
       this.setState({openPostListing: !this.state.openPostListing});
     }
 
-
-
   }
-
-
 
   render() {
     return (
@@ -48,7 +63,7 @@ export default class Main extends React.Component {
 
         </AppBar>
         <h1>MAIN COMPONENT</h1>
-
+        <Search onClick={this.getListings.bind(this)}/>
         // drawer
 
         // partial profile
