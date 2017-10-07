@@ -10,6 +10,7 @@ export default class ListingsContainer extends React.Component {
 
   render() {
     return (
+      <div>
       <div className="wrapper">
         {this.props.listings.map((listing, i) => {
             return (
@@ -17,6 +18,8 @@ export default class ListingsContainer extends React.Component {
             )
           }
         )}
+      </div>
+        {this.props.listings.length === 0 ? <div className="messageBox"><h2><em>Please Try A Different Zipcode</em></h2></div> : ''}
       </div>
     );
   };
