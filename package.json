@@ -2,6 +2,9 @@
   "name": "sit-n-paws",
   "version": "1.0.0",
   "description": "Putting a woof over your head",
+  "engines": {
+    "node": "8.6.0"
+  },
   "main": "server.js",
   "scripts": {
     "test": "mocha test --exit",
