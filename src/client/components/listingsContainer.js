@@ -12,11 +12,13 @@ export default class ListingsContainer extends React.Component {
     return (
       <div className="wrapper">
         {this.props.listings.map((listing, i) => {
+
+
             return (
               <ListingView listing={listing} key={listing.name} />
             )
-          }
-        )}
+
+        })}
       </div>
     );
   };

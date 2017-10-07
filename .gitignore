@@ -7,3 +7,9 @@ node_modules
 ## Webpack files ##
 src/public/dist
 src/public/dist/bundle.js
+
+## Cloudinary API ##
+cloudinary/config.js
+
+## File Uploads ##
+uploads

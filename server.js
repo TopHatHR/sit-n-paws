@@ -6,6 +6,20 @@ const User = require('./db/models/users');
 const Listing = require('./db/models/listing');
 const jwt = require('jsonwebtoken');
 const seedListingDB = require('./seed');
+const cloudinary = require('cloudinary');
+const cloudConfig = require('./cloudinary/config.js');
+const multer = require('multer');
+
+const upload = multer({dest: './uploads/'});
+
+// This is the shape of the object from the config file which is gitignored
+// const cloudConfig = {
+//   cloud_name: 'top-hat',
+//   api_key: 'API_KEY',
+//   api_secret: 'API_SECRET'
+// };
+
+cloudinary.config(cloudConfig);
 
 const app = express();
 
@@ -30,12 +44,14 @@ app.post('/login', (req, res) => {
             if (match) {
 
               let payload = {
-                username: found.username
+                username: found.username,
+                name: found.name
               };
 
               let token = jwt.sign(payload, 'Shaken, not stirred', {
                 expiresIn: '1h'
               });
+
 
               res.json({
                 success: true,
@@ -83,7 +99,8 @@ app.post('/signup', (req, res) => {
         .then((newUser) => {
 
           let payload = {
-            username: newUser.username
+            username: newUser.username,
+            name: newUser.name
           };
 
           let token = jwt.sign(payload, 'Shaken, not stirred', {
@@ -124,17 +141,33 @@ app.post('/profile', (req, res) => {
   })
 });
 
+// Check post listing for uploaded files and stores in req.files
+let listingsUpload = upload.fields([{
+  name: 'hostPictures',
+  maxCount: 1
+}, {
+  name: 'homePictures',
+  maxCount: 1
+}]);
+
 //post for listings
-app.post('/listings', (req, res) => {
+app.post('/listings', listingsUpload, (req, res, next) => {
+  // The 'next()' is important as it ensures the images get sent
+  // to the Cloudinary servers after the Listing and responses are
+  // sent to the client, making the upload responsive
+  
   Listing.findOne({name: req.body.name})
   .then((found) => {
+
+
     if (found) {
       // update Listing
       Listing.update(req.body);
-      console.log('Updated!', found);
       res.json({success: true, message: 'Thank you, your listing has been successfully updated!', listing: found});
+      next();
 
     } else {
+      // Create new Listing and save in database
       var newListing = new Listing({
         name: req.body.name,
         zipcode: req.body.zipcode,
@@ -143,22 +176,62 @@ app.post('/listings', (req, res) => {
         dogTemperamentPreference: req.body.dogTemperamentPreference,
         dogActivityPreference: req.body.dogActivityPreference,
         homeAttributes: req.body.homeAttributes,
-        hostPictures: req.body.hostPictures,
-        homePictures: req.body.homePictures,
+        hostPictures: 'Image is being uploaded...',
+        homePictures: 'Image is being uploaded...',
         cost: req.body.cost
       });
+
+
       newListing.save((err, host) => {
         if (err) {
           res.json({success: false, message: err});
         } else {
-          console.log("Saved ", host);
           res.json({success: true, message: 'Thank you, your listing has been successfully saved!', listing: host});
         }
+        next();
       });
     }
+
+
   }).catch((err) => {
     res.json({success: false, message: err});
-  })
+    next();
+  });
+}, (req, res) => {
+
+  // Sends files to the Cloudinary servers and updates entries in the database
+  if (req.files.hostPictures) {
+    console.log('Send to cloudinary!', req.files.hostPictures[0].path);
+    cloudinary.v2.uploader.upload(req.files.hostPictures[0].path, (err, result) => {
+      if(err) {
+        console.log('Cloudinary error: ', err);
+      }
+      console.log('Host Picture url: ', result.url)
+      Listing.findOneAndUpdate({name: req.body.name}, {hostPictures: result.url}, (err, found) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log('Updated Host Pictures: ', found);
+      });
+    });
+  }
+
+
+  if (req.files.homePictures) {
+    console.log('Send to cloudinary!', req.files.homePictures[0].path);
+    cloudinary.v2.uploader.upload(req.files.homePictures[0].path, (err, result) => {
+      if (err) {
+        console.log('Cloudinary error: ', err);
+      }
+      console.log('Home Picture url: ', result.url);
+      Listing.findOneAndUpdate({name: req.body.name}, {homePictures: result.url}, (err, found) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log('Updated Home Pictures: ', found)
+      });
+    });
+  }
 
 });
 

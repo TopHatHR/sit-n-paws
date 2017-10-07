@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
-import loginSubmit from '../utils/login.js';
-
+import submitListing from '../utils/submitListing.js';
+import jwt from 'jsonwebtoken';
 
 export default class PostListing extends React.Component {
 
@@ -16,8 +16,8 @@ export default class PostListing extends React.Component {
       dogTemperamentPreference: '',
       dogActivityPreference: '',
       homeAttributes: '',
-      hostPictures: '',
-      homePictures: '',
+      hostPictures: null,
+      homePictures: null,
       cost: '',
       submitted: false,
       error: null,
@@ -25,7 +25,11 @@ export default class PostListing extends React.Component {
     }
 
     this.setField = (e) => {
-      this.setState({[e.target.name]: e.target.value});
+      if (e.target.type === 'file') {
+        this.setState({[e.target.name]: e.target.files[0]});
+      } else {
+        this.setState({[e.target.name]: e.target.value});
+      }
     }
 
     this.handleSubmit = () => {
@@ -37,8 +41,27 @@ export default class PostListing extends React.Component {
         }
       }
 
-      let url = 'http://localhost:3000/listings'
-      loginSubmit(url, this.state, (res) => {
+      let formData = new FormData();
+      formData.append("name", this.state.name);
+      formData.append("zipcode", this.state.zipcode);
+      formData.append("dogSizePreference", this.state.dogSizePreference);
+      formData.append("dogBreedPreference", this.state.dogBreedPreference);
+      formData.append("dogTemperamentPreference", this.state.dogTemperamentPreference);
+      formData.append("dogActivityPreference", this.state.dogActivityPreference);
+      formData.append("homeAttributes", this.state.homeAttributes);
+      formData.append("hostPictures", this.state.hostPictures);
+      formData.append("homePictures", this.state.homePictures);
+      formData.append("cost", this.state.cost);
+
+
+
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+      }
+
+      let url = 'http://localhost:3000/listings';
+
+      submitListing(url, formData, (res) => {
         if (res.success === true) {
           console.log('Listing submitted!');
           this.setState({message: res.message});
@@ -50,6 +73,14 @@ export default class PostListing extends React.Component {
       });
 
     }
+
+  }
+
+  componentDidMount() {
+    let token = localStorage.getItem('jwt');
+    let decoded = jwt.decode(token);
+    console.log(decoded);
+    this.setState({name: decoded.name});
 
   }
 
@@ -86,17 +117,19 @@ export default class PostListing extends React.Component {
                 <label>Dog Activity Preferences:</label><br />
                 <input type="text" name="dogActivityPreference" value={this.state.dogActivityPreference} /><br />
 
+                <label>Cost Per Night: </label><br />
+                <input type="text" name="cost" value={this.state.cost} /><br />
+
                 <label>Description:</label><br />
                 <textarea type="text" name="homeAttributes" value={this.state.homeAttributes} /><br />
 
-                <label>Picture of you: (URL)</label><br />
-                <input type="text" name="hostPictures" value={this.state.hostPictures} /><br />
 
-                <label>Picture of your home: (URL)</label><br />
-                <input type="text" name="homePictures" value={this.state.homePictures} /><br />
+                <label for="hostPictures" className="postListing-fileLabel">{this.state.hostPictures ? this.state.hostPictures.name : `Choose a Picture of you`}</label><br />
+                <input type="file" name="hostPictures" id="hostPictures" className="postListing-file" /><br />
 
-                <label>Cost Per Night: </label><br />
-                <input type="text" name="cost" value={this.state.cost} /><br />
+                <label for="homePictures" className="postListing-fileLabel">{this.state.homePictures ? this.state.homePictures.name : `Choose a Picture of your home`}</label><br />
+                <input type="file" name="homePictures" id="homePictures" className="postListing-file" /><br />
+
 
               </div>
             </div>
