@@ -8,7 +8,8 @@
     "start": "nodemon server.js",
     "build": "webpack",
     "server": "nodemon server.js",
-    "dev": "webpack && nodemon server.js"
+    "dev": "webpack && nodemon server.js",
+    "heroku-postbuild": "webpack"
   },
   "repository": {
     "type": "git",
