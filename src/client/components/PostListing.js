@@ -109,8 +109,16 @@ export default class PostListing extends React.Component {
                 <input type="text" name="cost" value={this.state.cost} /><br />
                 <label>Description:</label><br />
                 <textarea type="text" name="homeAttributes" value={this.state.homeAttributes} /><br />
+<<<<<<< HEAD
                 <label htmlFor="hostPictures" className="postListing-fileLabel">{this.state.hostPictures ? this.state.hostPictures.name : `Choose a Picture of you`}</label><br />
                 <input type="file" name="hostPictures" id="hostPictures" className="postListing-file" /><br />
+=======
+
+
+                <label htmlFor="hostPictures" className="postListing-fileLabel">{this.state.hostPictures ? this.state.hostPictures.name : `Choose a Picture of you`}</label><br />
+                <input type="file" name="hostPictures" id="hostPictures" className="postListing-file" /><br />
+
+>>>>>>> htmlFor
                 <label htmlFor="homePictures" className="postListing-fileLabel">{this.state.homePictures ? this.state.homePictures.name : `Choose a Picture of your home`}</label><br />
                 <input type="file" name="homePictures" id="homePictures" className="postListing-file" /><br />
               </div>
