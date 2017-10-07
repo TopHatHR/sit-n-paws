@@ -38,12 +38,14 @@ app.post('/login', (req, res) => {
             if (match) {
 
               let payload = {
-                username: found.username
+                username: found.username,
+                name: found.name
               };
 
               let token = jwt.sign(payload, 'Shaken, not stirred', {
                 expiresIn: '1h'
               });
+
 
               res.json({
                 success: true,
@@ -91,7 +93,8 @@ app.post('/signup', (req, res) => {
         .then((newUser) => {
 
           let payload = {
-            username: newUser.username
+            username: newUser.username,
+            name: newUser.name
           };
 
           let token = jwt.sign(payload, 'Shaken, not stirred', {
@@ -143,20 +146,17 @@ let listingsUpload = upload.fields([{
 
 //post for listings
 app.post('/listings', listingsUpload, (req, res, next) => {
-  console.log('FILES', req.files);
-  console.log('Text: ', req.body);
-
-
-
+  // The 'next()' is important as it ensures the images get sent
+  // to the Cloudinary servers after the Listing and responses are
+  // sent to the client, making the upload responsive
+  
   Listing.findOne({name: req.body.name})
   .then((found) => {
 
 
     if (found) {
       // update Listing
-      console.log('Found');
       Listing.update(req.body);
-      console.log('Updated!', found);
       res.json({success: true, message: 'Thank you, your listing has been successfully updated!', listing: found});
       next();
 
@@ -180,7 +180,6 @@ app.post('/listings', listingsUpload, (req, res, next) => {
         if (err) {
           res.json({success: false, message: err});
         } else {
-          console.log("Saved ", host);
           res.json({success: true, message: 'Thank you, your listing has been successfully saved!', listing: host});
         }
         next();
