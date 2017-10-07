@@ -55,7 +55,7 @@ export default class Main extends React.Component {
     const url = `http://localhost:3000/listings/${term}`;
     request.get(url, (err, res) => {
       console.log('my res body', res.body);
-      this.setState({listings:res.body})
+      this.setState({ listings:res.body })
     })
   }
 
