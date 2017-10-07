@@ -12,6 +12,12 @@ const multer = require('multer');
 
 const upload = multer({dest: './uploads/'});
 
+// This is the shape of the object from the config file which is gitignored
+// const cloudConfig = {
+//   cloud_name: 'top-hat',
+//   api_key: 'API_KEY',
+//   api_secret: 'API_SECRET'
+// };
 
 cloudinary.config(cloudConfig);
 
