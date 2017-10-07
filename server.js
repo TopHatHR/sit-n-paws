@@ -19,7 +19,6 @@ seedListingDB();
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
-
   User.findOne({ username: username})
      .exec((err, found) => {
       if (err) {
@@ -76,7 +75,10 @@ app.post('/signup', (req, res) => {
         User.create({
           username: username,
           password: password,
-          email: email
+          email: email,
+          name: '',
+          phone: '',
+          address: ''
         })
         .then((newUser) => {
 
@@ -106,19 +108,21 @@ app.post('/signup', (req, res) => {
 //post for profile
 app.post('/profile', (req, res) => {
   var email = req.body.email;
-  User.findOne({ email: email })
-    .exec((err, user) => {
-      if (err) {
-        console.log('error');
-      } else {
-        user.set({
-          name: req.body.name,
-          phone: req.body.phone,
-          address: req.body.address
-        }).save();
-      }
-    })
-})
+  console.log(req.body);
+  var updateProfile = {
+    name: req.body.name,
+    phone: req.body.phone,
+    address: req.body.address
+  };
+
+  User.findOneAndUpdate({email: email}, updateProfile, function(err) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('Profile update success!');
+    }
+  })
+});
 
 //post for listings
 app.post('/listings', (req, res) => {
