@@ -90,10 +90,10 @@ export default class PostListing extends React.Component {
                 <textarea type="text" name="homeAttributes" value={this.state.homeAttributes} /><br />
 
                 <label>Picture of you: (URL)</label><br />
-                <input type="text" name="hostPictures" value={this.state.hostPictures} /><br />
+                <input type="file" name="hostPictures" value={this.state.hostPictures} /><br />
 
                 <label>Picture of your home: (URL)</label><br />
-                <input type="text" name="homePictures" value={this.state.homePictures} /><br />
+                <input type="file" name="homePictures" value={this.state.homePictures} /><br />
 
                 <label>Cost Per Night: </label><br />
                 <input type="text" name="cost" value={this.state.cost} /><br />

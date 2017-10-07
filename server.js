@@ -6,6 +6,14 @@ const User = require('./db/models/users');
 const Listing = require('./db/models/listing');
 const jwt = require('jsonwebtoken');
 const seedListingDB = require('./seed');
+const cloudinary = require('cloudinary');
+const cloudConfig = require('./cloudinary/config.js');
+const multer = require('multer');
+
+const upload = multer({dest: './uploads/'});
+
+
+cloudinary.config(cloudConfig);
 
 const app = express();
 
@@ -125,7 +133,8 @@ app.post('/profile', (req, res) => {
 });
 
 //post for listings
-app.post('/listings', (req, res) => {
+app.post('/listings', upload.array('photos', 2), (req, res) => {
+  console.log('FILES', req.files);
   Listing.findOne({name: req.body.name})
   .then((found) => {
     if (found) {
