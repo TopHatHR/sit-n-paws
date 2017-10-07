@@ -9,7 +9,7 @@ export default class PostListing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'D',
+      name: '',
       zipcode: 19,
       dogSizePreference: 'D',
       dogBreedPreference: 'D',
@@ -73,6 +73,11 @@ export default class PostListing extends React.Component {
       });
 
     }
+
+  }
+
+  componentDidMount() {
+    let token = localStorage.get('jwt');
 
   }
 
