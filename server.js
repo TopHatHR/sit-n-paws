@@ -132,18 +132,62 @@ app.post('/profile', (req, res) => {
   })
 });
 
+// Check post listing for uploaded files and stores in req.files
+let listingsUpload = upload.fields([{
+  name: 'hostPictures',
+  maxCount: 1
+}, {
+  name: 'homePictures',
+  maxCount: 1
+}]);
+
 //post for listings
-app.post('/listings', upload.array('photos', 2), (req, res) => {
+app.post('/listings', listingsUpload, (req, res, next) => {
   console.log('FILES', req.files);
+  console.log('Text: ', req.body);
+
+  if (req.files.hostPictures) {
+    console.log('Send to cloudinary!', req.files.hostPictures[0].path);
+
+    cloudinary.v2.uploader.upload(req.files.hostPictures[0].path, (err, result) => {
+      if(err) {
+        console.log('Cloudinary error: ', err);
+      }
+      req.body.hostPictures = result.url;
+      console.log('Host Picture url: ', result.url)
+      next();
+    });
+  } else next()
+
+}, (req, res, next) => {
+  if (req.files.homePictures) {
+    console.log('Send to cloudinary!', req.files.homePictures[0].path);
+    cloudinary.v2.uploader.upload(req.files.homePictures[0].path, (err, result) => {
+      if (err) {
+        console.log('Cloudinary error: ', err);
+      }
+      req.body.homePictures = result.url;
+      console.log('Home Picture url: ', result.url);
+      next();
+    });
+  } else next()
+}, (req, res) => {
+  console.log("After cloud: ", req.body.hostPictures, req.body.homePictures);
+
+
   Listing.findOne({name: req.body.name})
   .then((found) => {
+
+
     if (found) {
       // update Listing
+      console.log('Found');
       Listing.update(req.body);
       console.log('Updated!', found);
       res.json({success: true, message: 'Thank you, your listing has been successfully updated!', listing: found});
 
     } else {
+      // Create new Listing and save in database
       var newListing = new Listing({
         name: req.body.name,
         zipcode: req.body.zipcode,
@@ -156,6 +200,8 @@ app.post('/listings', upload.array('photos', 2), (req, res) => {
         homePictures: req.body.homePictures,
         cost: req.body.cost
       });
+
+
       newListing.save((err, host) => {
         if (err) {
           res.json({success: false, message: err});

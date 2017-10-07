@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
-import loginSubmit from '../utils/login.js';
+import submitListing from '../utils/submitListing.js';
 
 
 export default class PostListing extends React.Component {
@@ -9,16 +9,16 @@ export default class PostListing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      zipcode: '',
-      dogSizePreference: '',
-      dogBreedPreference: '',
-      dogTemperamentPreference: '',
-      dogActivityPreference: '',
-      homeAttributes: '',
-      hostPictures: '',
-      homePictures: '',
-      cost: '',
+      name: 'D',
+      zipcode: 19,
+      dogSizePreference: 'D',
+      dogBreedPreference: 'D',
+      dogTemperamentPreference: 'D',
+      dogActivityPreference: 'D',
+      homeAttributes: 'D',
+      hostPictures: 'n/a',
+      homePictures: 'n/a',
+      cost: 30,
       submitted: false,
       error: null,
       message: 'Thank you, your listing has been successfully submitted!'
@@ -55,9 +55,13 @@ export default class PostListing extends React.Component {
 
 
 
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+      }
 
-      let url = 'http://localhost:3000/listings'
-      loginSubmit(url, this.state, (res) => {
+      let url = 'http://localhost:3000/listings';
+
+      submitListing(url, formData, (res) => {
         if (res.success === true) {
           console.log('Listing submitted!');
           this.setState({message: res.message});
@@ -105,17 +109,18 @@ export default class PostListing extends React.Component {
                 <label>Dog Activity Preferences:</label><br />
                 <input type="text" name="dogActivityPreference" value={this.state.dogActivityPreference} /><br />
 
-                <label>Description:</label><br />
-                <textarea type="text" name="homeAttributes" value={this.state.homeAttributes} /><br />
-
                 <label>Cost Per Night: </label><br />
                 <input type="text" name="cost" value={this.state.cost} /><br />
 
+                <label>Description:</label><br />
+                <textarea type="text" name="homeAttributes" value={this.state.homeAttributes} /><br />
+
+
                 <label>Picture of you: (URL)</label><br />
-                <input type="file" name="hostPictures" value={this.state.hostPictures} /><br />
+                <input type="file" name="hostPictures" /><br />
 
                 <label>Picture of your home: (URL)</label><br />
-                <input type="file" name="homePictures" value={this.state.homePictures} /><br />
+                <input type="file" name="homePictures" /><br />
 
 
               </div>

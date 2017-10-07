@@ -12,13 +12,6 @@ export default class ListingsContainer extends React.Component {
     return (
       <div className="wrapper">
         {this.props.listings.map((listing, i) => {
-<<<<<<< 1cb806e5fa20dad5a5b9fe4d8d0245577dc8fa84
-            return (
-              <ListingView listing={listing} key={listing.name} />
-            )
-          }
-        )}
-=======
 
 
             return (
@@ -26,7 +19,6 @@ export default class ListingsContainer extends React.Component {
             )
 
         })}
->>>>>>> Removed cap of 10 on listings
       </div>
     );
   };
