@@ -3,6 +3,7 @@
 
 ## NPM ##
 node_modules
+package-lock.json
 
 ## Webpack files ##
 src/public/dist
