@@ -100,7 +100,8 @@ app.post('/signup', (req, res) => {
 
           let payload = {
             username: newUser.username,
-            name: newUser.name
+            name: newUser.name,
+            email: newUser.email
           };
 
           let token = jwt.sign(payload, 'Shaken, not stirred', {
@@ -155,7 +156,7 @@ app.post('/listings', listingsUpload, (req, res, next) => {
   // The 'next()' is important as it ensures the images get sent
   // to the Cloudinary servers after the Listing and responses are
   // sent to the client, making the upload responsive
-  
+
   Listing.findOne({name: req.body.name})
   .then((found) => {
 

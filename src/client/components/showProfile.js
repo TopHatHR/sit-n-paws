@@ -44,8 +44,9 @@ export default class ShowProfile extends React.Component {
       <div className='profileBox'>
         <h1>{this.state.Name}</h1>
         <Avatar style={this.styles}
+        backgroundColor='rgba(0,0,0,0)'
         alt="User Picture"
-        src="https://i.pinimg.com/736x/63/0f/0e/630f0ef3f6f3126ca11f19f4a9b85243--dachshund-puppies-weenie-dogs.jpg"
+        src="https://i.imgur.com/katTIZJ.png"
         />
       </div>
     );
