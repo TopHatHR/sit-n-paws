@@ -17,6 +17,7 @@ export default class ListingsContainer extends React.Component {
             return (
               <ListingView listing={listing} key={listing.name} />
             )
+          }
         })}
       </div>
     );
