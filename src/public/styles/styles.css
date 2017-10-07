@@ -87,7 +87,7 @@ body, html, #app {
 }
 
 .login-forms {
-  min-height: 250px;
+  min-height: 340px;
   max-width: 320px;
   border: 2px solid black;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
@@ -168,4 +168,25 @@ input {
 
 .profileBox {
   text-align: center;
+}
+
+.puppy404 {
+  margin: 0 auto;
+  height: 150px;
+  width: 175px;
+  background-image: url('../assets/404sadpuppy.png');
+  background-size: 175px 150px;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+}
+
+.header404 {
+  margin-top: 0;
+}
+
+.button404 {
+  width: 120px;
+  height: 30px;
+  font-weight: 700;
+  background: #fff;
 }

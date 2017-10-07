@@ -171,17 +171,18 @@ app.get('/listings', (req, res) => {
 })
 
 //get for listings by zipcode
-app.get('/listings/:zipcode', (req, res) => {
-  var zipcode = req.params.zipcode;
-  Listing.find({ zipcode: req.params.zipcode })
+app.get('/listings', (req, res) => {
+  var zipcode = Number(req.params.id.slice(1));
+  Listing.find({})
     .exec((err, listings) => {
-      //console.log(listings);
       if (err) {
         console.log('error');
       } else {
-        res.send(listings);
-        }
-      })
+        res.send('/listings/:zipcode', {
+          listing: listings
+        })
+      }
+    })
 })
 
 app.get('*', (req, res) => {

@@ -1,6 +1,7 @@
 // import mongoose, config, and listing schema
 const mongoose = require('mongoose');
 const Listing = require('./db/models/listing');
+const User = require('./db/models/users');
 
 // seed data
 const listingsData = [
@@ -16,27 +17,58 @@ const listingsData = [
 {"name":"Lily Feake","zipcode":94106,"dogSizePreference":"medium","dogBreedPreference":"All","dogTemperamentPreference":"time-frame","dogActivityPreference":"vel","homeAttributes":"Training","hostPictures":"https://randomuser.me/api/portraits/men/59.jpg","homePictures":"https://farm4.staticflickr.com/3163/2780745441_a39b974e55.jpg","cost":55}
 ];
 
-// function to clean listings from database and seed with above listingsData
+const mockCompleteUser = [
+  {
+    username: 'mary444',
+    password: '1234',
+    email: 'mary@test.com',
+    name: 'Mary Tester',
+    phone: '561-123-5155',
+    address: '14 Main Street'
+  }
+];
+
+// function to clean listings from database and seed with above mockData
 const seedListingDB = () => {
+  // remove listings to start
   Listing.remove({}, (err) => {
     if(err) {
       console.log(err);
     } else {
       console.log('DATABASE SEED INIT: REMOVED PREVIOUS LISTINGS');
 
-      listingsData.forEach((listing) => {
-        // reformat data to strings for parsing before saving
-        let reformatListing = JSON.stringify(listing);
-        let newListing = new Listing(JSON.parse(reformatListing));
+      // remove mary444 user from mock data above to prevent db collisions
+      User.remove({'username': 'mary444'}, (err) => {
+        if(err) {
+          console.log(err);
+        }
 
-        newListing.save((err) => {
+        let reformatUser = JSON.stringify(mockCompleteUser[0]);
+        let newUser = new User(JSON.parse(reformatUser));
+
+        // add mock data mary444
+        newUser.save((err) => {
           if(err) {
             console.log(err);
           } else {
-            console.log('DATABASE SEED SUCCESS: ADDED MOCK LISTINGS');
+            console.log('DATABASE SEED: ADDED MOCK USER');
           }
         })
+
+        // iterate over mock listings, format, and save into db
+        listingsData.forEach((listing) => {
+          // reformat data to strings for parsing before saving
+          let reformatListing = JSON.stringify(listing);
+          let newListing = new Listing(JSON.parse(reformatListing));
+
+          newListing.save((err) => {
+            if(err) {
+              console.log(err);
+            }
+          })
+        })
       })
+      console.log('DATABASE SEED: ADDED MOCK LISTINGS');
     }
   })
 }
