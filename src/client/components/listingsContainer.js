@@ -8,6 +8,7 @@ export default class ListingsContainer extends React.Component {
 
   }
 
+<<<<<<< HEAD
   render() {
     return (
       <div>
@@ -24,5 +25,20 @@ export default class ListingsContainer extends React.Component {
     );
   };
 }
+=======
+
+    render() {
+      return (
+        <div className="wrapper">
+          {this.props.listings.map((listing, i) => {
+              return (
+                <ListingView listing={listing} key={listing.name} />
+              )
+          })}
+        </div>
+      );
+    };
+  }
+>>>>>>> syntax
 
 ListingsContainer.propTypes = {listings: PropTypes.array.isRequired};
