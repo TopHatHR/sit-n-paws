@@ -146,33 +146,6 @@ app.post('/listings', listingsUpload, (req, res, next) => {
   console.log('FILES', req.files);
   console.log('Text: ', req.body);
 
-  if (req.files.hostPictures) {
-    console.log('Send to cloudinary!', req.files.hostPictures[0].path);
-
-    cloudinary.v2.uploader.upload(req.files.hostPictures[0].path, (err, result) => {
-      if(err) {
-        console.log('Cloudinary error: ', err);
-      }
-      req.body.hostPictures = result.url;
-      console.log('Host Picture url: ', result.url)
-      next();
-    });
-  } else next()
-
-}, (req, res, next) => {
-  if (req.files.homePictures) {
-    console.log('Send to cloudinary!', req.files.homePictures[0].path);
-    cloudinary.v2.uploader.upload(req.files.homePictures[0].path, (err, result) => {
-      if (err) {
-        console.log('Cloudinary error: ', err);
-      }
-      req.body.homePictures = result.url;
-      console.log('Home Picture url: ', result.url);
-      next();
-    });
-  } else next()
-}, (req, res) => {
-  console.log("After cloud: ", req.body.hostPictures, req.body.homePictures);
 
 
   Listing.findOne({name: req.body.name})
@@ -185,6 +158,7 @@ app.post('/listings', listingsUpload, (req, res, next) => {
       Listing.update(req.body);
       console.log('Updated!', found);
       res.json({success: true, message: 'Thank you, your listing has been successfully updated!', listing: found});
+      next();
 
     } else {
       // Create new Listing and save in database
@@ -196,8 +170,8 @@ app.post('/listings', listingsUpload, (req, res, next) => {
         dogTemperamentPreference: req.body.dogTemperamentPreference,
         dogActivityPreference: req.body.dogActivityPreference,
         homeAttributes: req.body.homeAttributes,
-        hostPictures: req.body.hostPictures,
-        homePictures: req.body.homePictures,
+        hostPictures: 'Image is being uploaded...',
+        homePictures: 'Image is being uploaded...',
         cost: req.body.cost
       });
 
@@ -209,11 +183,50 @@ app.post('/listings', listingsUpload, (req, res, next) => {
           console.log("Saved ", host);
           res.json({success: true, message: 'Thank you, your listing has been successfully saved!', listing: host});
         }
+        next();
       });
     }
+
+
   }).catch((err) => {
     res.json({success: false, message: err});
-  })
+    next();
+  });
+}, (req, res) => {
+
+  // Sends files to the Cloudinary servers and updates entries in the database
+  if (req.files.hostPictures) {
+    console.log('Send to cloudinary!', req.files.hostPictures[0].path);
+    cloudinary.v2.uploader.upload(req.files.hostPictures[0].path, (err, result) => {
+      if(err) {
+        console.log('Cloudinary error: ', err);
+      }
+      console.log('Host Picture url: ', result.url)
+      Listing.findOneAndUpdate({name: req.body.name}, {hostPictures: result.url}, (err, found) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log('Updated Host Pictures: ', found);
+      });
+    });
+  }
+
+
+  if (req.files.homePictures) {
+    console.log('Send to cloudinary!', req.files.homePictures[0].path);
+    cloudinary.v2.uploader.upload(req.files.homePictures[0].path, (err, result) => {
+      if (err) {
+        console.log('Cloudinary error: ', err);
+      }
+      console.log('Home Picture url: ', result.url);
+      Listing.findOneAndUpdate({name: req.body.name}, {homePictures: result.url}, (err, found) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log('Updated Home Pictures: ', found)
+      });
+    });
+  }
 
 });
 
