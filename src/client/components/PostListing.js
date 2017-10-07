@@ -25,7 +25,11 @@ export default class PostListing extends React.Component {
     }
 
     this.setField = (e) => {
-      this.setState({[e.target.name]: e.target.value});
+      if (e.target.type === 'file') {
+        this.setState({[e.target.name]: e.target.files[0]});
+      } else {
+        this.setState({[e.target.name]: e.target.value});
+      }
     }
 
     this.handleSubmit = () => {
@@ -36,6 +40,21 @@ export default class PostListing extends React.Component {
           return;
         }
       }
+
+      let formData = new FormData();
+      formData.append("name", this.state.name);
+      formData.append("zipcode", this.state.zipcode);
+      formData.append("dogSizePreference", this.state.dogSizePreference);
+      formData.append("dogBreedPreference", this.state.dogBreedPreference);
+      formData.append("dogTemperamentPreference", this.state.dogTemperamentPreference);
+      formData.append("dogActivityPreference", this.state.dogActivityPreference);
+      formData.append("homeAttributes", this.state.homeAttributes);
+      formData.append("hostPictures", this.state.hostPictures);
+      formData.append("homePictures", this.state.homePictures);
+      formData.append("cost", this.state.cost);
+
+
+
 
       let url = 'http://localhost:3000/listings'
       loginSubmit(url, this.state, (res) => {
@@ -89,14 +108,15 @@ export default class PostListing extends React.Component {
                 <label>Description:</label><br />
                 <textarea type="text" name="homeAttributes" value={this.state.homeAttributes} /><br />
 
+                <label>Cost Per Night: </label><br />
+                <input type="text" name="cost" value={this.state.cost} /><br />
+
                 <label>Picture of you: (URL)</label><br />
                 <input type="file" name="hostPictures" value={this.state.hostPictures} /><br />
 
                 <label>Picture of your home: (URL)</label><br />
                 <input type="file" name="homePictures" value={this.state.homePictures} /><br />
 
-                <label>Cost Per Night: </label><br />
-                <input type="text" name="cost" value={this.state.cost} /><br />
 
               </div>
             </div>
