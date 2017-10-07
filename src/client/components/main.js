@@ -54,14 +54,18 @@ export default class Main extends React.Component {
   handleChange(term) {
     const url = `http://localhost:3000/listings/${term}`;
     request.get(url, (err, res) => {
-      console.log('my res body', res.body);
+      if (err) {
+        console.log(err);
+      } else {
+      //console.log('my res body', res.body);
       this.setState({ listings:res.body })
+      }
     })
   }
 
-  // componentDidMount() {
-  //   this.handleChange('94123');
-  // }
+  componentDidMount() {
+    this.handleChange('');
+  }
 
 
   render() {
