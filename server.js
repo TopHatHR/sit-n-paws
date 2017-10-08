@@ -251,7 +251,7 @@ app.post('/contacthost', (req, res) => {
   var mailOptions = {
     to: hostEmail,
     subject: 'Hi! Someone wants to stay at your house!',
-    text: 'email the petowner @ ' + ownerEmail + 'before ' + date
+    text: 'email the petowner @ ' + ownerEmail + ' before ' + date
   };
   transporter.sendMail(mailOptions, function(error, response) {
     if (error) {
