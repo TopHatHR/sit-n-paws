@@ -251,11 +251,10 @@ app.get('/listings', (req, res) => {
 //get for listings by zipcode
 app.get('/listings/:zipcode', (req, res) => {
   var zipcode = req.params.zipcode;
-  Listing.find({ zipcode: req.params.zipcode })
+  Listing.find({ "$where": `function() { return this.zipcode.toString().match(/${zipcode}/) !== null; }`})
     .exec((err, listings) => {
-      //console.log(listings);
       if (err) {
-        console.log('error');
+        console.log(err);
       } else {
         res.send(listings);
         }
