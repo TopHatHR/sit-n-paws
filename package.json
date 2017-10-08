@@ -11,10 +11,7 @@
     "start": "nodemon server.js",
     "build": "webpack",
     "server": "nodemon server.js",
-    "dev": "webpack && nodemon server.js",
-    "webpack:deploy": "webpack --config=webpack.config.js -p",
-    "heroku-postbuild": "npm run webpack:deploy"
-
+    "dev": "webpack && nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -62,6 +59,6 @@
     "mocha": "^4.0.1",
     "react": "^16.0.0",
     "style-loader": "^0.18.2",
-    "supertest": "^3.0.0",
+    "supertest": "^3.0.0"
   }
 }
