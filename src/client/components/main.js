@@ -15,6 +15,8 @@ import ProfileUpdate from './profileForm.js';
 import ShowProfile from './showProfile.js';
 import request from 'superagent';
 
+let masterUrl = 'http://107.170.230.18:3000';
+
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -52,7 +54,7 @@ export default class Main extends React.Component {
   }
 
   handleChange(term) {
-    const url = `http://localhost:3000/listings/${term}`;
+    const url = masterUrl + `/listings/${term}`;
     request.get(url, (err, res) => {
       if (err) {
         console.log(err);
