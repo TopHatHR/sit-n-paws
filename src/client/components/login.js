@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 import LoginSubmit from '../utils/login';
 
 // login form that takes username and password
+let masterUrl = 'http://107.170.230.18:3000';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class Login extends React.Component {
     this.handleSubmit = (e, register) => {
       if(register === 'register') {
 
-        var url = 'http://localhost:3000/signup';
+        var url = masterUrl + '/signup';
         var credentials = {
           username: this.state.registerUsername,
           password: this.state.registerPassword,
@@ -30,7 +31,7 @@ export default class Login extends React.Component {
         };
       } else {
 
-        var url = 'http://localhost:3000/login';
+        var url = masterUrl + '/login';
         var credentials = {
           username: this.state.username,
           password: this.state.password

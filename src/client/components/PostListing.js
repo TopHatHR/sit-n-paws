@@ -4,6 +4,8 @@ import FlatButton from 'material-ui/FlatButton';
 import submitListing from '../utils/submitListing.js';
 import jwt from 'jsonwebtoken';
 
+let masterUrl = 'http://107.170.230.18:3000';
+
 export default class PostListing extends React.Component {
 
   constructor(props) {
@@ -59,7 +61,7 @@ export default class PostListing extends React.Component {
         console.log(pair[0] + ', ' + pair[1]);
       }
 
-      let url = 'http://localhost:3000/listings';
+      let url = masterUrl + '/listings';
 
       submitListing(url, formData, (res) => {
         if (res.success === true) {

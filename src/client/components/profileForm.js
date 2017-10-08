@@ -4,6 +4,8 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import LoginSubmit from '../utils/login';
 
+let masterUrl = 'http://107.170.230.18:3000';
+
 export default class ProfileUpdate extends React.Component {
 
   constructor(props) {
@@ -45,7 +47,7 @@ export default class ProfileUpdate extends React.Component {
 
     this.updateProfile = (query) => {
       console.log(query)
-      var url = 'http://localhost:3000/profile';
+      var url = masterUrl + '/profile';
       var options = {
         method: 'POST',
         body: JSON.stringify(query),
