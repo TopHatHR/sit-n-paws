@@ -250,8 +250,8 @@ app.post('/contacthost', (req, res) => {
   });
   var mailOptions = {
     to: hostEmail,
-    subject: 'Hi! Someone wants to stay at your house!',
-    text: 'email the petowner @ ' + ownerEmail + ' before ' + date
+    subject: 'Hi from Sit-n-Paws! A friend wants to stay at your house on ' + date,
+    text: 'Email the pet owner @ ' + ownerEmail + ' Please respond within 24 hours!'
   };
   transporter.sendMail(mailOptions, function(error, response) {
     if (error) {

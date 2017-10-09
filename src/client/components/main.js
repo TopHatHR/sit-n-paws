@@ -94,7 +94,7 @@ export default class Main extends React.Component {
           <AppBar title="Sit-n-Paws Profile" onLeftIconButtonTouchTap={this.touchTap} style={{background: 'rgb(197, 186, 155)'}}/>
           <ShowProfile/>
           <RaisedButton onClick={this.profileOnClick} label="Edit Profile" labelColor="white" style={this.styles} backgroundColor="rgb(197, 186, 155)" />
-          <RaisedButton onClick={this.logoutOnClick} label="Log Out" secondary={true} style={this.styles}/>
+          <RaisedButton onClick={this.logoutOnClick} label="Log Out" labelColor="white" style={this.styles} backgroundColor="rgb(171, 94, 94)"/>
           {this.state.renderProfile ? <ProfileUpdate/> : null}
         </Drawer>
         <Dialog
