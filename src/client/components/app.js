@@ -7,32 +7,21 @@ import NotFound from './notfound.js';
 import PrivateRoute from './private.js';
 import jwt from 'jsonwebtoken';
 
-// should have state that tracks login status
-
+// App is the Home component with a path of '/'
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      loggedInAs: '',
-      isLoggedIn: null
-    }
-    // handleLogout
-    // localStorage.removeItem(key);
-
+    // USING JWT AUTHENTICATION: Checks for current existence of a json web token
+    // Returns true if found, false if not.
+    // Can be decoded to extract username and expiration date for stricter login validation
+    // Token becomes null upon logout
     this.authLogin = () => {
       let token = localStorage.getItem('jwt');
-      console.log("AuthLOGIN RAN", token);
       if (token !== "undefined" && token !== null && token !== undefined) {
-        let decoded = jwt.decode(token);
-        // this.setState({loggedInAs: decoded.username});
-        // this.setState({isLoggedIn: true});
         return true;
       } else {
         return false;
       }
-      // If no token is found and/or success is false
-        // return false
     }
   }
 
