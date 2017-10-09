@@ -36,6 +36,7 @@ export default class Main extends React.Component {
 
     this.styles = {
     margin: 40,
+
     }
 
     this.logoutOnClick = (event) => {
@@ -79,20 +80,21 @@ export default class Main extends React.Component {
         iconElementRight={<IconButton><NavigationMenu/></IconButton>}
         onRightIconButtonTouchTap={this.touchTap}
         onLeftIconButtonTouchTap={this.postListing}
+        style={{background: 'rgb(197, 186, 155)'}}
         >
 
         </AppBar>
-        <h1>Search for a Host Here:</h1>
+        <br/>
 
         <Search onChange={this.handleChange}/>
         <br/>
 
         <ListingsContainer listings={this.state.listings} />
         <Drawer width={400} openSecondary={true} open={this.state.openDrawer} >
-          <AppBar title="Sit-n-Paws Profile" onLeftIconButtonTouchTap={this.touchTap}/>
+          <AppBar title="Sit-n-Paws Profile" onLeftIconButtonTouchTap={this.touchTap} style={{background: 'rgb(197, 186, 155)'}}/>
           <ShowProfile/>
-          <RaisedButton onClick={this.profileOnClick} label="Edit Profile" primary={true} style={this.styles} />
-          <RaisedButton onClick={this.logoutOnClick} label="Log Out" primary={true} style={this.styles}/>
+          <RaisedButton onClick={this.profileOnClick} label="Edit Profile" labelColor="white" style={this.styles} backgroundColor="rgb(197, 186, 155)" />
+          <RaisedButton onClick={this.logoutOnClick} label="Log Out" secondary={true} style={this.styles}/>
           {this.state.renderProfile ? <ProfileUpdate/> : null}
         </Drawer>
         <Dialog

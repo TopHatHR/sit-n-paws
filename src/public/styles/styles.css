@@ -36,6 +36,10 @@ body, html, #app {
   margin: 0 auto;
 }
 
+.searchTitle {
+  text-align: center;
+}
+
 .login-form-button {
   width: 120px;
   position: absolute;
