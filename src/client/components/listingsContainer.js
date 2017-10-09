@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListingView from './listingView';
-export default class ListingsContainer extends React.Component {
 
+// This component dynamically renders each listing in the array stored in the state of Main.js
+export default class ListingsContainer extends React.Component {
   constructor(props) {
     super(props);
   }

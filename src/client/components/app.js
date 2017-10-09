@@ -12,6 +12,7 @@ import jwt from 'jsonwebtoken';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
     // USING JWT AUTHENTICATION: Checks for current existence of a json web token
     // Returns true if found, false if not.
     // Can be decoded to extract username and expiration date for stricter login validation
