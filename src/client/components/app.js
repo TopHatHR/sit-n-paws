@@ -7,7 +7,8 @@ import NotFound from './notfound.js';
 import PrivateRoute from './private.js';
 import jwt from 'jsonwebtoken';
 
-// App is the Home component with a path of '/'
+// App is the top level component that links to the other component
+// and is where the router is located.
 export default class App extends React.Component {
   constructor(props) {
     super(props);
