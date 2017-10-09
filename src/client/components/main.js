@@ -7,7 +7,6 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Pets from 'material-ui/svg-icons/action/pets';
-import exampleListingData from '../../public/MOCK_DATA.js';
 import Dialog from 'material-ui/Dialog';
 import Search from './search.js'
 import RaisedButton from 'material-ui/RaisedButton';
