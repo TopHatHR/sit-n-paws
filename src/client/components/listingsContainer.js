@@ -8,6 +8,7 @@ export default class ListingsContainer extends React.Component {
     super(props);
   }
 
+  // If listings.length is 0, shows message on line 22
   render() {
     return (
       <div>
@@ -16,10 +17,9 @@ export default class ListingsContainer extends React.Component {
             return (
               <ListingView listing={listing} key={listing.name} />
             )
-          }
-        )}
+        })}
       </div>
-        {this.props.listings.length === 0 ? <div className="messageBox"><h2><em>Please Try A Different Zipcode</em></h2></div> : ''}
+      {this.props.listings.length === 0 ? <div className="messageBox"><h2><em>Please Try A Different Zipcode</em></h2></div> : ''}
       </div>
     );
   };
