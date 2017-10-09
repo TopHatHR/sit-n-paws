@@ -7,15 +7,14 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Pets from 'material-ui/svg-icons/action/pets';
-import exampleListingData from '../../public/MOCK_DATA.js';
 import Dialog from 'material-ui/Dialog';
 import Search from './search.js'
 import RaisedButton from 'material-ui/RaisedButton';
 import ProfileUpdate from './profileForm.js';
 import ShowProfile from './showProfile.js';
 import request from 'superagent';
+import masterUrl from '../utils/masterUrl.js';
 
-let masterUrl = 'http://107.170.230.18:3000';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -37,6 +36,7 @@ export default class Main extends React.Component {
 
     this.styles = {
     margin: 40,
+
     }
 
     this.logoutOnClick = (event) => {
@@ -80,20 +80,21 @@ export default class Main extends React.Component {
         iconElementRight={<IconButton><NavigationMenu/></IconButton>}
         onRightIconButtonTouchTap={this.touchTap}
         onLeftIconButtonTouchTap={this.postListing}
+        style={{background: 'rgb(197, 186, 155)'}}
         >
 
         </AppBar>
-        <h1>Search for a Host Here:</h1>
+        <br/>
 
         <Search onChange={this.handleChange}/>
         <br/>
 
         <ListingsContainer listings={this.state.listings} />
         <Drawer width={400} openSecondary={true} open={this.state.openDrawer} >
-          <AppBar title="Sit-n-Paws Profile" onLeftIconButtonTouchTap={this.touchTap}/>
+          <AppBar title="Sit-n-Paws Profile" onLeftIconButtonTouchTap={this.touchTap} style={{background: 'rgb(197, 186, 155)'}}/>
           <ShowProfile/>
-          <RaisedButton onClick={this.profileOnClick} label="Edit Profile" primary={true} style={this.styles} />
-          <RaisedButton onClick={this.logoutOnClick} label="Log Out" primary={true} style={this.styles}/>
+          <RaisedButton onClick={this.profileOnClick} label="Edit Profile" labelColor="white" style={this.styles} backgroundColor="rgb(197, 186, 155)" />
+          <RaisedButton onClick={this.logoutOnClick} label="Log Out" labelColor="white" style={this.styles} backgroundColor="rgb(171, 94, 94)"/>
           {this.state.renderProfile ? <ProfileUpdate/> : null}
         </Drawer>
         <Dialog

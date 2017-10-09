@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import jwt from 'jsonwebtoken';
 import request from 'superagent';
+import masterUrl from '../utils/masterUrl.js';
 
 export default class ListingView extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ export default class ListingView extends React.Component {
 
     this.handleSendEmail = () => {
       this.setState({open: false});
-      const url = `http://localhost:3000/contacthost`;
+      const url = `${masterUrl}/contacthost`;
       request
         .post(url)
         .send({
@@ -80,17 +81,20 @@ export default class ListingView extends React.Component {
             avatar={this.props.listing.hostPictures}
           />
           <CardMedia
-            overlay={<CardTitle title={this.props.listing.cost + " Per Night!"} subtitle="Premium Kibble Included." />}
+            overlay={<CardTitle title={`$${this.props.listing.cost} Per Night!`} subtitle={this.props.listing.homeAttributes} />}
           >
-            <img src={this.props.listing.homePictures} alt="" />
+            <img src={this.props.listing.homePictures} alt="Home Picture" width="360" height="270" />
           </CardMedia>
-          <CardTitle title={`Preferred Dog Breed: ${this.props.listing.dogBreedPreference}`}
+          <CardTitle title="5 Stars"
            subtitle={`Max Dog Size:${this.props.listing.dogSizePreference}`} />
           <CardText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+            <div className = "listing">
+              {`Preferred Dog Breed: ${this.props.listing.dogBreedPreference}. `}
+              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.`}
+            </div>
           </CardText>
           <CardActions>
             <FlatButton label="Contact Me" onClick={this.handleOpen}/>
