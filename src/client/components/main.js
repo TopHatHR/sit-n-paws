@@ -13,8 +13,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ProfileUpdate from './profileForm.js';
 import ShowProfile from './showProfile.js';
 import request from 'superagent';
+import masterUrl from '../utils/masterUrl.js';
 
-let masterUrl = 'http://107.170.230.18:3000';
 
 export default class Main extends React.Component {
   constructor(props) {

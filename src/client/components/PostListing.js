@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import submitListing from '../utils/submitListing.js';
 import jwt from 'jsonwebtoken';
+import masterUrl from '../utils/masterUrl.js';
 
-let masterUrl = 'http://107.170.230.18:3000';
 
 export default class PostListing extends React.Component {
   constructor(props) {

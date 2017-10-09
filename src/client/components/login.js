@@ -4,9 +4,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import jwt from 'jsonwebtoken';
 import LoginSubmit from '../utils/login';
+import masterUrl from '../utils/masterUrl.js';
 
 // login form that takes username and password
-let masterUrl = 'http://107.170.230.18:3000';
 
 export default class Login extends React.Component {
   constructor(props) {

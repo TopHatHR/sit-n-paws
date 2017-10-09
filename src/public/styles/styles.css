@@ -12,6 +12,10 @@ body, html, #app {
   grid-auto-flow: row;
 }
 
+.listing {
+  height: 125px;
+}
+
 @media only screen and (max-width: 420px) {
   .wrapper {
     grid-template-columns: 1fr;
