@@ -14,7 +14,7 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Testing](#tests)
+    1. [Testing](#testing)
     1. [Roadmap](#roadmap)
 1. [Team](#team)
 1. [Contributing](#contributing)
