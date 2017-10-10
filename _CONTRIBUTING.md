@@ -129,7 +129,7 @@ Thanks for contributing!
 
 1. Uphold the current code standard:
     - Keep your code __DRY__.
-    - Follow [STYLE-GUIDE.md](STYLE-GUIDE.md)
+    - Follow [STYLE-GUIDE.md](_STYLE-GUIDE.md)
 1. Run the __tests__ before submitting a pull request.
 1. Tests are very, very important. Submit tests if your pull request contains new, testable behavior.
 1. Your pull request is comprised of a single commit.
