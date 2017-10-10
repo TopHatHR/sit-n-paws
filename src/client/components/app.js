@@ -27,6 +27,7 @@ export default class App extends React.Component {
     }
   }
 
+  // if checkAuth is true, then allow access to /main
   render() {
     return(
     <BrowserRouter history={browserHistory}>

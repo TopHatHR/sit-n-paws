@@ -7,11 +7,11 @@ import LoginSubmit from '../utils/login';
 import masterUrl from '../utils/masterUrl.js';
 
 // login form that takes username and password
-
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
 
+    // login and register forms are tracked with separate states
     this.state = {
       username: '',
       password: '',
@@ -20,17 +20,18 @@ export default class Login extends React.Component {
       registerEmail: ''
     }
 
+    // This single submit function handles both the submit and the register
+    // Default is login. If 'register' is passed as an argument, it executes the register post instead.
     this.handleSubmit = (e, register) => {
       if(register === 'register') {
-
         var url = masterUrl + '/signup';
         var credentials = {
           username: this.state.registerUsername,
           password: this.state.registerPassword,
           email: this.state.registerEmail
         };
-      } else {
 
+      } else {
         var url = masterUrl + '/login';
         var credentials = {
           username: this.state.username,
@@ -38,14 +39,11 @@ export default class Login extends React.Component {
         };
       }
 
-      // CALLBACK TO SET PARENT STATE AS LOGGED IN
+      // Calls LoginSubmit function in utils, if crentials are correct, server
+      // replies with a jwt, which is then stored in localStorage.
       LoginSubmit(url, credentials, (res) => {
-        console.log('RES: ', res);
         if(res.success === true) {
           localStorage.setItem('jwt', res.token);
-          let decoded = jwt.decode(res.token);
-          console.log('DECODED: ', decoded);
-          props.handleLogin();
           props.history.push('/main');
         } else {
           console.log(res.error);
@@ -54,50 +52,36 @@ export default class Login extends React.Component {
       })
     }
 
-    this.handleUsernameChange = (e, register) => {
-      if(register === 'register') {
-        this.setState({registerUsername: e.target.value});
-      } else {
-        this.setState({username: e.target.value});
-      }
-    }
-
-    this.handlePasswordChange = (e, register) => {
-      if(register === 'register') {
-        this.setState({registerPassword: e.target.value});
-      } else {
-        this.setState({password: e.target.value});
-      }
-    }
-
-    this.handleEmailChange = (e) => {
-      this.setState({registerEmail: e.target.value});
+    // This handles the field changes for the forms
+    this.setField = (e) => {
+      this.setState({[e.target.name]: e.target.value});
     }
 
   }
 
+  // Login component checks for presence of jwt before it loads, if exists, redirects user to main
   componentWillMount() {
     let token = localStorage.getItem('jwt');
     if (token !== "undefined" && token !== null && token !== undefined) {
-      let decoded = jwt.decode(token);
       this.props.history.push('/main');
     }
   }
 
+  // MuiThemeProvider is required for material-ui themes
+  // These are the forms for login and registration
   render() {
-
     return (
       <MuiThemeProvider>
       <div>
           <div className="wrapper login-forms-container">
             <div className="login-forms">
               <h1>LOGIN</h1>
-              <form>
+              <form onChange={this.setField}>
                 <label>username</label>
-                <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+                <input type="text" name="username" value={this.state.username}/>
                 <br />
                 <label>password</label>
-                <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                <input type="password" name="password" value={this.state.password}/>
                 <div className="login-form-welcomeBack">
                   <em>Welcome Back!</em>
                 </div>
@@ -115,15 +99,15 @@ export default class Login extends React.Component {
 
             <div className="login-forms">
               <h1>REGISTER</h1>
-              <form>
+              <form onChange={this.setField}>
                 <label>email</label>
-                <input type="email" value={this.state.registerEmail} onChange={(e) => this.handleEmailChange(e)} />
+                <input type="email" name="registerEmail" value={this.state.registerEmail} />
                 <br />
                 <label>username</label>
-                <input type="text" value={this.state.registerUsername} onChange={(e) => this.handleUsernameChange(e, 'register')} />
+                <input type="text" name="registerUsername" value={this.state.registerUsername} />
                 <br />
                 <label>password</label>
-                <input type="password" value={this.state.registerPassword} onChange={(e) => this.handlePasswordChange(e, 'register')} />
+                <input type="password" name="registerPassword" value={this.state.registerPassword} />
               </form>
               <div className="login-form-button">
                 <FlatButton
