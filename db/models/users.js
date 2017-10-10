@@ -1,12 +1,10 @@
-// import mongoose from 'mongoose';
 var mongoose = require('mongoose');
 var sitnpaws = require('../config');
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 var Promise = require('bluebird');
 
-//last four = part of profile
-
+//user schema
 usersSchema = new mongoose.Schema(
   {
     username: { type: String, required: true, index: { unique: true } },
@@ -18,6 +16,7 @@ usersSchema = new mongoose.Schema(
   }
 );
 
+//password encryption
 usersSchema.pre('save', function(next) {
   var cipher = Promise.promisify(bcrypt.hash);
   return cipher(this.password, null, null).bind(this)
@@ -27,6 +26,7 @@ usersSchema.pre('save', function(next) {
   });
 });
 
+//compare passwords
 usersSchema.methods.comparePassword = function(pwd) {
   var comp = Promise.promisify(bcrypt.compare);
   return comp(pwd, this.password).bind(this)
@@ -34,4 +34,5 @@ usersSchema.methods.comparePassword = function(pwd) {
 };
 
 var User = mongoose.model('User', usersSchema);
+
 module.exports = User;

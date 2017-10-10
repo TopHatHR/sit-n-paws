@@ -8,6 +8,7 @@ class Search extends React.Component {
     }
   }
 
+  //handles input in search
   onInputChange(query) {
     this.setState({query});
     this.props.onChange(query);

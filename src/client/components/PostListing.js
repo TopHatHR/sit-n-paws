@@ -5,7 +5,6 @@ import submitListing from '../utils/submitListing.js';
 import jwt from 'jsonwebtoken';
 import masterUrl from '../utils/masterUrl.js';
 
-
 export default class PostListing extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +24,7 @@ export default class PostListing extends React.Component {
       message: 'Thank you, your listing has been successfully submitted!'
     }
 
+    //handles input fields
     this.setField = (e) => {
       if (e.target.type === 'file') {
         this.setState({[e.target.name]: e.target.files[0]});
@@ -47,12 +47,12 @@ export default class PostListing extends React.Component {
       formData.append("zipcode", this.state.zipcode);
       formData.append("dogSizePreference", this.state.dogSizePreference);
       formData.append("dogBreedPreference", this.state.dogBreedPreference);
-      // formData.append("dogTemperamentPreference", this.state.dogTemperamentPreference);
       formData.append("dogActivityPreference", this.state.dogActivityPreference);
       formData.append("homeAttributes", this.state.homeAttributes);
       formData.append("hostPictures", this.state.hostPictures);
       formData.append("homePictures", this.state.homePictures);
       formData.append("cost", this.state.cost);
+
       for (var pair of formData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
       }
@@ -74,7 +74,6 @@ export default class PostListing extends React.Component {
   componentDidMount() {
     let token = localStorage.getItem('jwt');
     let decoded = jwt.decode(token);
-    console.log(decoded);
     this.setState({name: decoded.name});
   }
 
@@ -86,29 +85,36 @@ export default class PostListing extends React.Component {
     } else {
       return (
         <div>
-          <h1>Sign up to become a pet host:</h1>
           {this.state.error ? <p className="postListing-error">{this.state.error}</p> : ''}
           <form onChange={this.setField} onSubmit={this.handleSubmit}>
             <div className="postListing">
               <div className="postListing-label">
+
                 <label>Name:</label><br />
                 <input type="text" name="name" value={this.state.name} /><br />
+
                 <label>Email:</label><br />
                 <input type="text" name="email" value={this.state.email} /><br />
+
                 <label>Zip Code:</label><br />
                 <input type="number" name="zipcode" value={this.state.zipcode} /><br />
+
                 <label>Dog Size Preference</label><br />
                 <input type="text" name="dogSizePreference" value={this.state.dogSizePreference} /><br />
+
                 <label>Dog Breed Preference:</label><br />
                 <input type="text" name="dogBreedPreference" value={this.state.dogBreedPreference} /><br />
               </div>
               <div className="postListing-label">
                 <label>Dog Activity Preferences:</label><br />
                 <input type="text" name="dogActivityPreference" value={this.state.dogActivityPreference} /><br />
+
                 <label>Cost Per Night: </label><br />
                 <input type="text" name="cost" value={this.state.cost} /><br />
+
                 <label>Description:</label><br />
                 <textarea type="text" name="homeAttributes" value={this.state.homeAttributes} /><br />
+<<<<<<< HEAD
 <<<<<<< HEAD
                 <label htmlFor="hostPictures" className="postListing-fileLabel">{this.state.hostPictures ? this.state.hostPictures.name : `Choose a Picture of you`}</label><br />
                 <input type="file" name="hostPictures" id="hostPictures" className="postListing-file" /><br />
@@ -119,6 +125,12 @@ export default class PostListing extends React.Component {
                 <input type="file" name="hostPictures" id="hostPictures" className="postListing-file" /><br />
 
 >>>>>>> htmlFor
+=======
+
+                <label htmlFor="hostPictures" className="postListing-fileLabel">{this.state.hostPictures ? this.state.hostPictures.name : `Choose a Picture of you`}</label><br />
+                <input type="file" name="hostPictures" id="hostPictures" className="postListing-file" /><br />
+
+>>>>>>> clean up
                 <label htmlFor="homePictures" className="postListing-fileLabel">{this.state.homePictures ? this.state.homePictures.name : `Choose a Picture of your home`}</label><br />
                 <input type="file" name="homePictures" id="homePictures" className="postListing-file" /><br />
               </div>
