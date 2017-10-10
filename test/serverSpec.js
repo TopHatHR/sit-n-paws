@@ -184,6 +184,7 @@ describe('Listings APIs and database', function() {
 
   before(function(done) {
 
+    // create listings names array for future testing
     var listingsNamesData = [];
 
     for(var i = 0; i < listingsData.length; i++) {
