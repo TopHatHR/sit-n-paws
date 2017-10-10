@@ -6,13 +6,11 @@ const Home = (props) => (
     <div className="landingBlock">
       <div>
         <span className="border">
-        sit-n-paws
+          sit-n-paws
         </span>
       </div>
       <div>
-
           <Link to='/login'><span className="landingLoginLink">Login / Register</span></Link>
-
       </div>
     </div>
   </div>

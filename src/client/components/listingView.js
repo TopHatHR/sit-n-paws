@@ -9,9 +9,13 @@ import jwt from 'jsonwebtoken';
 import request from 'superagent';
 import masterUrl from '../utils/masterUrl.js';
 
+// This is the component for each individual listing.
+// It has its own state to manage the email information
+// of each individual listing.
 export default class ListingView extends React.Component {
   constructor(props) {
     super (props);
+
     this.state = {
       hostEmail: props.listing.email,
       ownerEmail: null,
@@ -19,19 +23,23 @@ export default class ListingView extends React.Component {
       date: null,
     }
 
+    // Opens the modal upon clicking contact me
     this.handleOpen = () => {
       this.setState({open: true});
     }
 
+    // Closes the modal upon clicking contact me
     this.handleClose = () => {
       this.setState({open: false});
     }
 
+    // Handles the date change in contact me
     this.handleChangeDate = (e, date) => {
       this.setState({date: date});
       console.log(date);
     }
 
+    // Sends the email by posting to the /contacthost endpoint on the server
     this.handleSendEmail = () => {
       this.setState({open: false});
       const url = `${masterUrl}/contacthost`;
@@ -44,7 +52,7 @@ export default class ListingView extends React.Component {
         })
         .end((err, res) => {
           if (err) {
-            console.log(err)
+            console.log('There was an error sending email: ', err)
           } else {
             console.log(res);
           }
@@ -52,6 +60,8 @@ export default class ListingView extends React.Component {
     }
   }
 
+  // When component loads, retrieves and decodes jwt and extracts user's email
+  // from token.
   componentDidMount() {
     var token = localStorage.jwt;
     var decoded = jwt.decode(token);
@@ -59,6 +69,7 @@ export default class ListingView extends React.Component {
   }
 
   render() {
+    // These are the action buttons for the Dialog
     const actions = [
       <FlatButton
       label="Cancel"
@@ -72,6 +83,9 @@ export default class ListingView extends React.Component {
         onClick={this.handleSendEmail}
       />
     ];
+
+    // Refer to material-ui cards for more info on changing card styles
+    // Each props.listing is passed from Main to listingsContainer to listingView
     return (
       <div>
         <Card>

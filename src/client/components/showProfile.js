@@ -18,6 +18,7 @@ import {
   purple500,
 } from 'material-ui/styles/colors';
 
+// Shows the profile in the drawer
 export default class ShowProfile extends React.Component {
 
   constructor(props) {

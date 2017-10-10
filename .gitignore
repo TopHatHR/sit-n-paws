@@ -11,6 +11,7 @@ src/public/dist/bundle.js
 
 ## Cloudinary API ##
 cloudinary/config.js
+cloudinary
 
 ## File Uploads ##
 uploads
