@@ -5,7 +5,6 @@ export default class ListingsContainer extends React.Component {
 
   constructor(props) {
     super(props);
-
   }
 
   render() {

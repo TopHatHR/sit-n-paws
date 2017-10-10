@@ -24,7 +24,8 @@ const app = express();
 app.use(express.static((__dirname + '/src/public')));
 app.use(bodyParser.json());
 seedListingDB();
-//post for login information
+
+//handles log in information in the db, creates jwt
 app.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
@@ -61,7 +62,7 @@ app.post('/login', (req, res) => {
     })
 });
 
-//post for signup information
+//handles new user creations in db
 app.post('/signup', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
@@ -109,10 +110,10 @@ app.post('/signup', (req, res) => {
     console.log(password);
 })
 
-//post for profile
+//handles updating profiles in db
 app.post('/profile', (req, res) => {
   var email = req.body.email;
-  console.log(req.body);
+
   var updateProfile = {
     name: req.body.name,
     phone: req.body.phone,
@@ -126,7 +127,8 @@ app.post('/profile', (req, res) => {
     }
   })
 });
-// Check post listing for uploaded files and stores in req.files
+
+//Check post listing for uploaded files and stores in req.files
 let listingsUpload = upload.fields([{
   name: 'hostPictures',
   maxCount: 1
@@ -134,7 +136,8 @@ let listingsUpload = upload.fields([{
   name: 'homePictures',
   maxCount: 1
 }]);
-//post for listings
+
+//handles posts for listings in db
 app.post('/listings', listingsUpload, (req, res, next) => {
   // The 'next()' is important as it ensures the images get sent
   // to the Cloudinary servers after the Listing and responses are
@@ -208,7 +211,7 @@ app.post('/listings', listingsUpload, (req, res, next) => {
   }
 });
 
-//get for listings (all)
+//handles getting all listings that exist
 app.get('/listings', (req, res) => {
   Listing.find({})
     .exec((err, listings) => {
@@ -220,7 +223,7 @@ app.get('/listings', (req, res) => {
     })
 })
 
-//get for listings by zipcode
+//handles getting listings by zipcode from search
 app.get('/listings/:zipcode', (req, res) => {
   var zipcode = req.params.zipcode;
   Listing.find({ "$where": `function() { return this.zipcode.toString().match(/${zipcode}/) !== null; }`})
@@ -233,14 +236,12 @@ app.get('/listings/:zipcode', (req, res) => {
       })
 })
 
-//contact host
+//handles requests for contacting host, sends email to host
 app.post('/contacthost', (req, res) => {
   var ownerEmail = req.body.ownerEmail;
   var hostEmail = req.body.hostEmail;
   var date = req.body.date;
-  console.log(ownerEmail);
-  console.log(hostEmail);
-  console.log(date);
+
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
