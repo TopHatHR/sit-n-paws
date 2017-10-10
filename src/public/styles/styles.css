@@ -8,22 +8,10 @@ body, html, #app {
   display: grid;
   grid-template-columns: repeat(2, minmax(200px, 360px));
   grid-gap: 10px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   grid-auto-flow: row;
-}
-
-.listing {
-  height: 125px;
-}
-
-@media only screen and (max-width: 420px) {
-  .wrapper {
-    grid-template-columns: 1fr;
-   }
-  .login-forms {
-    margin: 0 auto;
-    width: 80%;
-  }
 }
 
 .wrapper div {
@@ -36,16 +24,21 @@ body, html, #app {
   margin: 0 auto;
 }
 
-.searchTitle {
-  text-align: center;
+@media only screen and (max-width: 420px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+   }
+  .login-forms {
+    margin: 0 auto;
+    width: 80%;
+  }
 }
 
-.login-form-button {
-  width: 120px;
-  position: absolute;
-  bottom: 0;
-  left: 31%;
+.listing {
+  height: 125px;
 }
+
+/* === LANDING PAGE === */
 
 .landingImage {
   opacity: 0.70;
@@ -90,6 +83,8 @@ body, html, #app {
   text-shadow: rgba(0, 0, 0, 0.76) 0px 1px 1px;
 }
 
+/* === LOGIN/REGISTER FORMS === */
+
 .login-forms-container {
   margin-top: 20%;
 }
@@ -98,7 +93,8 @@ body, html, #app {
   min-height: 340px;
   max-width: 320px;
   border: 2px solid black;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
   position: relative;
 }
 
@@ -117,12 +113,22 @@ body, html, #app {
   color: #999;
 }
 
+.login-form-button {
+  width: 120px;
+  position: absolute;
+  bottom: 0;
+  left: 31%;
+}
+
+/* === POST LISTING === */
+
 .postListing {
   display: grid;
   grid-template-columns: repeat(2, minmax(200px, 360px));
   grid-gap: 5px;
+  -webkit-box-pack: left;
+  -ms-flex-pack: left;
   justify-content: left;
-
 }
 
 .postListing-label label {
@@ -173,10 +179,7 @@ body, html, #app {
   padding: 15px 20px;
   margin: 40px 8px 0px 8px;
   cursor: pointer;
-
 }
-
-
 
 input {
   display: block;
@@ -188,12 +191,18 @@ input {
   margin: 0 auto;
 }
 
+/* === SEARCH BAR === */
+
+.searchTitle {
+  text-align: center;
+}
+
 .searchBar {
   text-align: center;
   margin: 0 auto;
   font-family: monospace;
-
 }
+
 .messageBox {
   text-align: center;
 }
@@ -201,6 +210,8 @@ input {
 .profileBox {
   text-align: center;
 }
+
+/* === 404 PAGE === */
 
 .puppy404 {
   margin: 0 auto;
