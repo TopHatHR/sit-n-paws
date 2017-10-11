@@ -2,12 +2,17 @@
 
 > This application is for connecting pet owners who want to temporarily leave their beloved pets with other pet lovers (referred to as __hosts__) to safely care for them for a reasonable fee.
 
-## Team
+## Original Team (TopHatHR)
 
   - __Product Owner__: Lillian Lee
   - __Scrum Master__: Dominic Ma
   - __Development Team Members__: Ed Plato, Chris Pfaff
-
+  
+## Redevelopment Team (doghouseio)
+  - __Product Owner__: Zack Biernat
+  - __Scrum Master__: Iona Olive
+  - __Development Team Members__: Zack Biernat, Iona Olive, Douglas Salazar
+  
 ## Table of Contents
 
 1. [Usage](#usage)
