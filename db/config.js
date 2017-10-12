@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var url = 'mongodb://127.0.0.1/sitnpaws';
+var url = process.env.MONGO_URL ||'mongodb://127.0.0.1/sitnpaws';
 mongoose.connect(url);
 
 var sitnpaws = mongoose.connection;
