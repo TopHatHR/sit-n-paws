@@ -269,15 +269,15 @@ app.get('*', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
 })
 
-app.set('port', (process.env.PORT || 3000));
-app.get('/', function() {
-  response.send('App is running');
-}).listen(app.get('port', function() {
-  console.log('App is running, server is listening on port', app.get('port'));
-})
-})
-// app.listen(3000, () => {
-//   console.log('Listening on localhost:3000');
-// });
+// app.set('port', (process.env.PORT || 3000));
+// app.get('/', function() {
+//   response.send('App is running');
+// }).listen(app.get('port', function() {
+//   console.log('App is running, server is listening on port', app.get('port'));
+// })
+// })
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Listening on localhost:3000');
+});
 
 module.exports = app;
