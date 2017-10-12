@@ -129,6 +129,34 @@ app.post('/profile', (req, res) => {
   })
 });
 
+app.post('/dog', (req, res) => {
+  var email = req.body.email;
+
+  var dog = {
+    name: req.body.name,
+    dogSize: req.body.dogSize,
+    dogBreed: req.body.dogBreed,
+    dogActivityReq: req.body.dogActivityReq,
+    bio: req.body.bio,
+    dogPictures: req.body.dogPictures,
+    age: req.body.age,
+  }
+  User.findOneAndUpdate(
+    { email: email},// "questionsAnswered._id": questionId },
+    { $push: {
+        dogs: dog
+      }
+    }
+    //adds question response data to user's data
+    , function(err) {
+      if(err) {
+        res.status(404).send(err);
+      } else {
+        res.status(200).send()
+      }
+  })
+});
+
 //Check post listing for uploaded files and stores in req.files
 let listingsUpload = upload.fields([{
   name: 'hostPictures',
