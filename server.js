@@ -207,6 +207,9 @@ app.post('/listings', listingsUpload, (req, res, next) => {
         // dogTemperamentPreference: req.body.dogTemperamentPreference,
         dogActivityPreference: req.body.dogActivityPreference,
         homeAttributes: req.body.homeAttributes,
+        yard: req.body.yard,
+        children: req.body.children,
+        pets: req.body.pets,
         hostPictures: 'Image is being uploaded...',
         homePictures: 'Image is being uploaded...',
         cost: req.body.cost
