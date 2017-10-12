@@ -270,7 +270,6 @@ app.get('*', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
 })
 
-<<<<<<< HEAD
 // app.set('port', (process.env.PORT || 3000));
 // app.get('/', function() {
 //   response.send('App is running');
@@ -280,10 +279,6 @@ app.get('*', (req, res) => {
 // })
 app.listen(process.env.PORT || 3000, () => {
   console.log('Listening on server:3000');
-=======
-app.listen(port, () => {
-  console.log('Listening on port', port);
->>>>>>> Changed hard-coded masterUrls to relative paths.
 });
 
 module.exports = app;
