@@ -3,6 +3,7 @@ var sitnpaws = require('../config');
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 var Promise = require('bluebird');
+var Schema = mongoose.Schema;
 
 //user schema
 usersSchema = new mongoose.Schema(
