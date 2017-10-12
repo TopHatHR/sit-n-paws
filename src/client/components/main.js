@@ -57,7 +57,7 @@ export default class Main extends React.Component {
 
     // Search - live search by zipcode
     this.handleSearch = (term) => {
-      const url = `/listings/${term}`;
+      const url = masterUrl + `/listings/${term}`;
       request.get(url, (err, res) => {
         if (err) {
           console.log(err);
