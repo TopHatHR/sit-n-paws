@@ -11,6 +11,7 @@ const cloudConfig = require('./cloudinary/config.js');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
 const upload = multer({dest: './uploads/'});
+let port = process.env.PORT || 3000
 
 // This is the shape of the object from the config file which is gitignored
 // const cloudConfig = {

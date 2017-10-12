@@ -29,7 +29,7 @@ export default class ProfileUpdate extends React.Component {
       console.log('Update profile');
       let data = this.state;
       this.setState({renderState: !this.state.renderState})
-      var url = masterUrl + '/profile';
+      var url = '/profile';
       var options = {
         method: 'POST',
         body: JSON.stringify(data),
