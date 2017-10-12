@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Putting a woof over your head",
   "engines": {
-    "node": "8.6.0"
+    "node": "6.9.1"
   },
   "main": "server.js",
   "scripts": {

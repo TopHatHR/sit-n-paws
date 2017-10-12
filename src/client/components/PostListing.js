@@ -57,7 +57,7 @@ export default class PostListing extends React.Component {
         console.log(pair[0] + ', ' + pair[1]);
       }
 
-      let url = masterUrl + '/listings';
+      let url = '/listings';
 
       submitListing(url, formData, (res) => {
         if (res.success === true) {

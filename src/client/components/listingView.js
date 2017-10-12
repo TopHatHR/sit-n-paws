@@ -42,7 +42,7 @@ export default class ListingView extends React.Component {
     // Sends the email by posting to the /contacthost endpoint on the server
     this.handleSendEmail = () => {
       this.setState({open: false});
-      const url = `${masterUrl}/contacthost`;
+      const url = `/contacthost`;
       request
         .post(url)
         .send({
