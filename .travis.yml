@@ -1,4 +1,11 @@
 language: node_js
 node_js:
-  - '0.8'
-  - '0.10'
+- '0.8'
+- '0.10'
+deploy:
+  provider: heroku
+  api_key:
+    secure: FjuFXtXfa0/cSN8eZEE0Ql2u9i7f0yOMTmFjaCEJLxjK/epl0sTl977k6i35uHVb1U4X2Ghl6fd805RRNjUEE+E8XWfYouQUHCj8FxuQLg3S3NYx/YEtwDwiojadx4RcSxJTnQyWYoqIHmTci7uylq5Z/Xigq4GHgGV/kCwEUxG54AkkYVehF5XTD+zzHLLKuoIBEbzoXY1PzYzEbHygQldVPMBGSvBdS3TSRysI5GgPsuOlOB6WWWOEksIM+v4bzyp4GiTylG3wL6ugdDwoEAld3I7BHpDfOCmQGXbXFJ9czFASiHLv0WEptye7+YWDaMSns+0w72M2GZuq9Kqkt70d5qXEQc4t4LDMd0AuhHmwLrjf/xqpEsimOmxztO8YvnV85Yr59XDd8CeSg0TgHWyo4KzUR2z99oL3v5atN0ILjNjfe09GXTamQ+pzRJAWK0cRnpMbJVTdb2wFOOuMXOhe/8cOvseCACvowLkwIGo1yyCvxdCzOC1TvDvFjz8cpoDSXgMArOsCINVJthRpnYwfkYhzZuzp9yDDwMW50xe91vh2Sqi9ii0/gGEj/3RSYdy58YFqRHT/yQiOsDXmbMLjP0v3VL8NgsT6uF6CEJvGngxmwBaxy+0jy/pBj27+XqPQIKSDKZZj/uowQh+Kfs1PgJtewi9aazvo/NV26D8=
+  app: Dougpaws
+  on:
+    repo: Dsalazar1685/sit-n-paws
