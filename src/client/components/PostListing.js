@@ -15,7 +15,9 @@ export default class PostListing extends React.Component {
       dogSizePreference: '',
       dogBreedPreference: '',
       dogActivityPreference: '',
+      pets: '',
       homeAttributes: '',
+      yard: '',
       hostPictures: null,
       homePictures: null,
       cost: '',
@@ -32,7 +34,7 @@ export default class PostListing extends React.Component {
         this.setState({[e.target.name]: e.target.value});
       }
     }
-
+//decoded.email in didcomponentmount
     this.handleSubmit = () => {
       for (let key in this.state) {
         if (this.state[key] === '') {
@@ -52,6 +54,8 @@ export default class PostListing extends React.Component {
       formData.append("hostPictures", this.state.hostPictures);
       formData.append("homePictures", this.state.homePictures);
       formData.append("cost", this.state.cost);
+      formData.append("yard", this.state.yard);
+      formData.append("pets", this.state.pets);
 
       for (var pair of formData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
@@ -93,8 +97,10 @@ export default class PostListing extends React.Component {
                 <label>Name:</label><br />
                 <input type="text" name="name" value={this.state.name} /><br />
 
-                <label>Email:</label><br />
+                {/* <label>Email:</label><br />
                 <input type="text" name="email" value={this.state.email} /><br />
+                get email from user profile
+                */}
 
                 <label>Zip Code:</label><br />
                 <input type="number" name="zipcode" value={this.state.zipcode} /><br />
@@ -104,10 +110,19 @@ export default class PostListing extends React.Component {
 
                 <label>Dog Breed Preference:</label><br />
                 <input type="text" name="dogBreedPreference" value={this.state.dogBreedPreference} /><br />
-              </div>
-              <div className="postListing-label">
+
                 <label>Dog Activity Preferences:</label><br />
                 <input type="text" name="dogActivityPreference" value={this.state.dogActivityPreference} /><br />
+
+              </div>
+              <div className="postListing-label">
+
+
+                <label>Pets: </label><br />
+                <input type="text" name="pets" value={this.state.pets} /><br />
+
+                <label>Yard Size: </label><br />
+                <input type="text" name="yard" value={this.state.yard} /><br />
 
                 <label>Cost Per Night: </label><br />
                 <input type="text" name="cost" value={this.state.cost} /><br />
@@ -138,3 +153,9 @@ export default class PostListing extends React.Component {
     };
   };
 }
+//no more email
+//change Description:
+  //yard Size
+  //pets?
+  //children?
+  //
