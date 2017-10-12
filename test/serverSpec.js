@@ -243,6 +243,7 @@ describe('Listings APIs and database', function() {
 
   // returns multiple listings from search query for zipcode with more than one database entry
   it('Returns multiple listings from search query for zipcode', function(done) {
+    this.timeout(1000);
     request(server)
       .post('/listings')
       .field('name', 'Angus Bafford')
