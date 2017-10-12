@@ -16,6 +16,7 @@ export default class PostListing extends React.Component {
       dogBreedPreference: '',
       dogActivityPreference: '',
       pets: '',
+      children: '',
       homeAttributes: '',
       yard: '',
       hostPictures: null,
@@ -56,6 +57,7 @@ export default class PostListing extends React.Component {
       formData.append("cost", this.state.cost);
       formData.append("yard", this.state.yard);
       formData.append("pets", this.state.pets);
+      formData.append("children", this.state.children);
 
       for (var pair of formData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
@@ -114,6 +116,9 @@ export default class PostListing extends React.Component {
                 <label>Dog Activity Preferences:</label><br />
                 <input type="text" name="dogActivityPreference" value={this.state.dogActivityPreference} /><br />
 
+                <label>Yard Size: </label><br />
+                <input type="text" name="yard" value={this.state.yard} /><br />
+
               </div>
               <div className="postListing-label">
 
@@ -121,8 +126,8 @@ export default class PostListing extends React.Component {
                 <label>Pets: </label><br />
                 <input type="text" name="pets" value={this.state.pets} /><br />
 
-                <label>Yard Size: </label><br />
-                <input type="text" name="yard" value={this.state.yard} /><br />
+                <label>Children: </label><br />
+                <input type="text" name="children" value={this.state.children} /><br />
 
                 <label>Cost Per Night: </label><br />
                 <input type="text" name="cost" value={this.state.cost} /><br />
