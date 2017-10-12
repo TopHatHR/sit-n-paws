@@ -11,6 +11,7 @@ const cloudConfig = require('./cloudinary/config.js');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
 const upload = multer({dest: './uploads/'});
+let port = process.env.PORT || 3000
 
 // This is the shape of the object from the config file which is gitignored
 // const cloudConfig = {
@@ -269,6 +270,7 @@ app.get('*', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
 })
 
+<<<<<<< HEAD
 // app.set('port', (process.env.PORT || 3000));
 // app.get('/', function() {
 //   response.send('App is running');
@@ -278,6 +280,10 @@ app.get('*', (req, res) => {
 // })
 app.listen(process.env.PORT || 3000, () => {
   console.log('Listening on server:3000');
+=======
+app.listen(port, () => {
+  console.log('Listening on port', port);
+>>>>>>> Changed hard-coded masterUrls to relative paths.
 });
 
 module.exports = app;
