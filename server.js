@@ -131,6 +131,7 @@ app.post('/profile', (req, res) => {
 
 app.post('/dog', (req, res) => {
   var email = req.body.email;
+  console.log('Request body', req.body)
 
   var dog = {
     name: req.body.name,
@@ -142,13 +143,13 @@ app.post('/dog', (req, res) => {
     age: req.body.age,
   }
   User.findOneAndUpdate(
-    { email: email},// "questionsAnswered._id": questionId },
+    email,
     { $push: {
         dogs: dog
       }
     }
-    //adds question response data to user's data
-    , function(err) {
+    , function(err, dogs) {
+      console.log('response',dogs[0].dogs)
       if(err) {
         res.status(404).send(err);
       } else {
@@ -156,6 +157,23 @@ app.post('/dog', (req, res) => {
       }
   })
 });
+
+//returns User's dogs
+app.get('/dog', (req, res) => {
+  var email = req.query.email;
+  if (!email) {
+    res.status(404).send('No email provided');
+  }
+  User.find({email: email}).select('dogs')
+  .exec((err, dogs) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(dogs[0].dogs);
+      }
+  })
+})
+
 
 //Check post listing for uploaded files and stores in req.files
 let listingsUpload = upload.fields([{
