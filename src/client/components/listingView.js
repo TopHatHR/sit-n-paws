@@ -119,11 +119,10 @@ export default class ListingView extends React.Component {
            subtitle={`Max Dog Size:${this.props.listing.dogSizePreference}`} />
           <CardText>
             <div className = "listing">
-              {`Preferred Dog Breed: ${this.props.listing.dogBreedPreference}. `}
-              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.`}
+              {`Preferred Dog Breed: ${this.props.listing.dogBreedPreference}. `} <br/>
+              {`Yard Size: ${this.props.listing.yard}. `} <br/>
+              {`Pets: ${this.props.listing.pets}`} <br/>
+              {`Description: ${this.props.listing.homeAttributes}`}
             </div>
           </CardText>
         </Card>
