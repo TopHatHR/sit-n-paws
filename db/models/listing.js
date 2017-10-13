@@ -13,7 +13,10 @@ listingSchema = new mongoose.Schema(
     homeAttributes: { type: String, required: true },
     hostPictures: { type: String, required: true },
     homePictures: { type: String, required: true },
-    cost: { type: Number, required: true }
+    cost: { type: Number, required: true },
+    yard: { type: String, required: true },
+    children: { type: String, required: true },
+    pets: { type: String, required: true },
   }
 );
 

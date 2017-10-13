@@ -11,6 +11,7 @@ const cloudConfig = require('./cloudinary/config.js');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
 const upload = multer({dest: './uploads/'});
+let port = process.env.PORT || 3000
 
 // This is the shape of the object from the config file which is gitignored
 // const cloudConfig = {
@@ -128,6 +129,52 @@ app.post('/profile', (req, res) => {
   })
 });
 
+app.post('/dog', (req, res) => {
+  var email = req.body.email;
+  console.log('Request body', req.body)
+
+  var dog = {
+    name: req.body.name,
+    dogSize: req.body.dogSize,
+    dogBreed: req.body.dogBreed,
+    dogActivityReq: req.body.dogActivityReq,
+    bio: req.body.bio,
+    dogPictures: req.body.dogPictures,
+    age: req.body.age,
+  }
+  User.findOneAndUpdate(
+    email,
+    { $push: {
+        dogs: dog
+      }
+    }
+    , function(err, dogs) {
+      console.log('response',dogs[0].dogs)
+      if(err) {
+        res.status(404).send(err);
+      } else {
+        res.status(200).send()
+      }
+  })
+});
+
+//returns User's dogs
+app.get('/dog', (req, res) => {
+  var email = req.query.email;
+  if (!email) {
+    res.status(404).send('No email provided');
+  }
+  User.find({email: email}).select('dogs')
+  .exec((err, dogs) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(dogs[0].dogs);
+      }
+  })
+})
+
+
 //Check post listing for uploaded files and stores in req.files
 let listingsUpload = upload.fields([{
   name: 'hostPictures',
@@ -160,6 +207,9 @@ app.post('/listings', listingsUpload, (req, res, next) => {
         // dogTemperamentPreference: req.body.dogTemperamentPreference,
         dogActivityPreference: req.body.dogActivityPreference,
         homeAttributes: req.body.homeAttributes,
+        yard: req.body.yard,
+        children: req.body.children,
+        pets: req.body.pets,
         hostPictures: 'Image is being uploaded...',
         homePictures: 'Image is being uploaded...',
         cost: req.body.cost
@@ -269,8 +319,15 @@ app.get('*', (req, res) => {
   res.sendFile(__dirname + '/src/public/index.html');
 })
 
-app.listen(3000, () => {
-  console.log('Listening on localhost:3000');
+// app.set('port', (process.env.PORT || 3000));
+// app.get('/', function() {
+//   response.send('App is running');
+// }).listen(app.get('port', function() {
+//   console.log('App is running, server is listening on port', app.get('port'));
+// })
+// })
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Listening on server:3000');
 });
 
 module.exports = app;

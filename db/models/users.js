@@ -3,6 +3,7 @@ var sitnpaws = require('../config');
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
 var Promise = require('bluebird');
+var Schema = mongoose.Schema;
 
 //user schema
 usersSchema = new mongoose.Schema(
@@ -13,6 +14,17 @@ usersSchema = new mongoose.Schema(
     name: { type: String, required: false },
     phone: { type: String, required: false },
     address: { type: String, required: false },
+    dogs: [Schema.Types.Mixed]
+      // {
+      //   name: {type: String, required: true},
+      //   dogSize: {type: String, required: true},
+      //   dogBreed: {type: String, required: true},
+      //   dogActivityReq: {type: String, required: true},
+      //   bio: {type: String, required: true},
+      //   dogPictures: {type: String, required: true},
+      //   age: {type: Number, required: true},
+      // }
+
   }
 );
 

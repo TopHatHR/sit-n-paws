@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- 6.9.1
+deploy:
+  provider: heroku
+  api_key:
+    secure: qRY1LtTblkO6cLx+OZgUp7Uv3ZMbk3ATOP04UBC8lxsp/FJPNAOuLKirnla0bm4Kv1dPn0H0w25BE0SDKcMB9Kc3opk1GXCX+lLs9EbwgQp+jgyB0BpYEfIxL+4cQx0vbQ7/TORSt3Xj5F2vj+HCNi2K35xzK8VrC2EC5G7XSTqyZa5k1tVdVWSW+aBxTSub9pBwE6Vzq2bW9o13A8Kl0Td3bR5B1nx5/og+4BQBDGTp/JcFaoj15ruAJrkdTFLE0AeONOIJxC1/GQaIHzjNHEUCUYHmf0/UIAUj65/war9vnpNrjK/0o2mbdZbsY5uToe/uOIOfsZpdstOmM6GOOq6InvkGcaqhgChjl1TNSJ3yFHAhp6g08FeVygzS9qNmTWbbMtm++KPU1pp9xedMa/P41G/Le5UDPax/y1DzcavSH5U53oR36Z5NuowFB+XqJvfbO4J3PLPecZZgg8gxWEEpsOjPrQaigs26pYbT5GWaiNUSkXh0P8JN5hZ92m7z/5uZwB6iYA7PwaQ+vZ8uElfEG8y7022EO9SeDd2dQu8g6+q3GJKNL3/QkGZHLEypDCmS+TJ/KxmQJt+kGd3xfPLPtnegpftZxuXAW4MnRCoXyA9TlRCz7afe0sDo+zuEjTZurqNuQT5jfWdJqF27fDWPJfNmD5AF4cASzmUqJkw=
+  app: doghouseio
+  on:
+    repo: doghouseio/sit-n-paws

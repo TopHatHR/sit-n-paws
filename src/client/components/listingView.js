@@ -8,6 +8,8 @@ import DatePicker from 'material-ui/DatePicker';
 import jwt from 'jsonwebtoken';
 import request from 'superagent';
 import masterUrl from '../utils/masterUrl.js';
+import ProfileView from './profileView.js';
+
 
 // This is the component for each individual listing.
 // It has its own state to manage the email information
@@ -21,6 +23,7 @@ export default class ListingView extends React.Component {
       ownerEmail: null,
       open: false,
       date: null,
+      openProfileView: false,
     }
 
     // Opens the modal upon clicking contact me
@@ -39,10 +42,15 @@ export default class ListingView extends React.Component {
       console.log(date);
     }
 
+    // ProfileView - Opens modal to view profile
+    this.profileView = () => {
+      this.setState({openProfileView: !this.state.openProfileView});
+    }
+
     // Sends the email by posting to the /contacthost endpoint on the server
     this.handleSendEmail = () => {
       this.setState({open: false});
-      const url = `${masterUrl}/contacthost`;
+      const url = `/contacthost`;
       request
         .post(url)
         .send({
@@ -58,6 +66,14 @@ export default class ListingView extends React.Component {
           }
         });
     }
+
+    this.handleCardClick = (e) => {
+      e.preventDefault();
+      this.profileView();
+      console.log('clicked this listing',this.props.listing)
+    }
+
+
   }
 
   // When component loads, retrieves and decodes jwt and extracts user's email
@@ -70,25 +86,25 @@ export default class ListingView extends React.Component {
 
   render() {
     // These are the action buttons for the Dialog
-    const actions = [
-      <FlatButton
-      label="Cancel"
-      secondary={true}
-      onClick={this.handleClose}
-      />,
-      <FlatButton
-        label="Send Message"
-        primary={true}
-        keyboardFocused={true}
-        onClick={this.handleSendEmail}
-      />
-    ];
+    // const actions = [
+    //   <FlatButton
+    //   label="Cancel"
+    //   secondary={true}
+    //   onClick={this.handleClose}
+    //   />,
+    //   <FlatButton
+    //     label="Send Message"
+    //     primary={true}
+    //     keyboardFocused={true}
+    //     onClick={this.handleSendEmail}
+    //   />
+    // ];
 
     // Refer to material-ui cards for more info on changing card styles
     // Each props.listing is passed from Main to listingsContainer to listingView
     return (
       <div>
-        <Card>
+        <Card onClick={this.handleCardClick}>
           <CardHeader
             title={this.props.listing.name}
             subtitle={"Puppy Lover in: " + this.props.listing.zipcode}
@@ -103,31 +119,21 @@ export default class ListingView extends React.Component {
            subtitle={`Max Dog Size:${this.props.listing.dogSizePreference}`} />
           <CardText>
             <div className = "listing">
-              {`Preferred Dog Breed: ${this.props.listing.dogBreedPreference}. `}
-              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.`}
+              {`Preferred Dog Breed: ${this.props.listing.dogBreedPreference}. `} <br/>
+              {`Yard Size: ${this.props.listing.yard}. `} <br/>
+              {`Pets: ${this.props.listing.pets}`} <br/>
+              {`Description: ${this.props.listing.homeAttributes}`}
             </div>
           </CardText>
-          <CardActions>
-            <FlatButton label="Contact Me" onClick={this.handleOpen}/>
-            <Dialog
-              title= {`Send ${this.props.listing.name} a message`}
-              actions={actions}
-              modal={false}
-              open={this.state.open}
-              onRequestClose={this.handleClose}
-            >
-            One last thing...pick a date:
-            <DatePicker
-              hintText="Pick a Date"
-              value={this.state.date}
-              onChange={this.handleChangeDate}
-            />
-            </Dialog>
-        </CardActions>
         </Card>
+        <Dialog
+          modal={false}
+          open={this.state.openProfileView}
+          onRequestClose={this.profileView}
+          autoScrollBodyContent={true}
+        >
+          <ProfileView listing={this.props.listing} />
+        </Dialog>
       </div>
     )
   }

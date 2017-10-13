@@ -1,6 +1,9 @@
 import React from 'react';
 import ListingsContainer from './listingsContainer.js';
 import PostListing from './PostListing.js';
+import PostDog from './postDog.js';
+import jwt from 'jsonwebtoken';
+
 import ProfileUpdate from './profileForm.js';
 import ShowProfile from './showProfile.js';
 import Search from './search.js'
@@ -25,6 +28,7 @@ export default class Main extends React.Component {
       query: '',
       openDrawer: false,
       openPostListing: false,
+      openPostDog: false,
       renderProfile: false,
     }
 
@@ -51,13 +55,19 @@ export default class Main extends React.Component {
     }
 
     // PostListing - Opens modal to post a listing
-    this.postListing = () => {
+    this.postListing = (event) => {
       this.setState({openPostListing: !this.state.openPostListing});
+    }
+
+    //PostDog - Opens modal to post a listing
+    this.postDog = () => {
+      console.log('Posting Dog')
+      this.setState({openPostDog: !this.state.openPostDog});
     }
 
     // Search - live search by zipcode
     this.handleSearch = (term) => {
-      const url = masterUrl + `/listings/${term}`;
+      const url = `/listings/${term}`;
       request.get(url, (err, res) => {
         if (err) {
           console.log(err);
@@ -71,6 +81,8 @@ export default class Main extends React.Component {
   // Populates listings on load
   componentDidMount() {
     this.handleSearch('');
+    let token = localStorage.getItem('jwt');
+    let decoded = jwt.decode(token);
   }
 
   // Renders AppBar, Search, Drawer, and PostListing
@@ -81,9 +93,11 @@ export default class Main extends React.Component {
         <AppBar
         title="Become A Pet Host!"
         iconElementLeft={<IconButton><Pets/></IconButton>}
+
         iconElementRight={<IconButton><NavigationMenu/></IconButton>}
         onRightIconButtonTouchTap={this.touchTap}
         onLeftIconButtonTouchTap={this.postListing}
+
         style={{background: 'rgb(197, 186, 155)'}}
         >
         </AppBar>
@@ -96,14 +110,24 @@ export default class Main extends React.Component {
           <ShowProfile/>
           <RaisedButton onClick={this.profileOnClick} label="Edit Profile" labelColor="white" style={this.styles} backgroundColor="rgb(197, 186, 155)" />
           <RaisedButton onClick={this.logoutOnClick} label="Log Out" labelColor="white" style={this.styles} backgroundColor="rgb(171, 94, 94)"/>
+          <RaisedButton onClick={this.postDog} label="Add dog profile" labelColor="white" style={this.styles} backgroundColor="rgb(171, 94, 94)"/>
           {this.state.renderProfile ? <ProfileUpdate/> : null}
         </Drawer>
         <Dialog
           modal={false}
           open={this.state.openPostListing}
           onRequestClose={this.postListing}
+          autoScrollBodyContent={true}
         >
           <PostListing />
+        </Dialog>
+        <Dialog
+          modal={false}
+          open={this.state.openPostDog}
+          onRequestClose={this.postDog}
+          autoScrollBodyContent={true}
+        >
+          <PostDog />
         </Dialog>
       </div>
       </MuiThemeProvider>

@@ -4,7 +4,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import jwt from 'jsonwebtoken';
 import LoginSubmit from '../utils/login';
-import masterUrl from '../utils/masterUrl.js';
 
 // login form that takes username and password
 export default class Login extends React.Component {
@@ -24,7 +23,7 @@ export default class Login extends React.Component {
     // Default is login. If 'register' is passed as an argument, it executes the register post instead.
     this.handleSubmit = (e, register) => {
       if(register === 'register') {
-        var url = masterUrl + '/signup';
+        var url = '/signup';
         var credentials = {
           username: this.state.registerUsername,
           password: this.state.registerPassword,
@@ -32,7 +31,7 @@ export default class Login extends React.Component {
         };
 
       } else {
-        var url = masterUrl + '/login';
+        var url = '/login';
         var credentials = {
           username: this.state.username,
           password: this.state.password
