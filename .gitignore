@@ -4,6 +4,7 @@
 ## NPM ##
 node_modules
 package-lock.json
+npm-debug.log
 
 ## Webpack files ##
 src/public/dist
